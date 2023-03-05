@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && OUTPUT=dist/client npm run sitemap",
+    "build": "astro build && OUTPUT=.vercel/output/static npm run sitemap",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint \"src/**/*.ts*\"",
@@ -32,7 +32,6 @@
     "@types/eslint": "^8.21.1",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
-    "alias-dirs": "^0.0.11",
     "eslint": "^8.35.0",
     "eslint-plugin-solid": "^0.9.4",
     "node-fetch": "^3.3.0",
