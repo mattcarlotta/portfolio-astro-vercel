@@ -70,5 +70,6 @@ function genSlugUrl(slug) {
     logInfoMessage(`Successfully wrote sitemap to ${FILE_OUTPUT}`)
   } catch (error) {
     logErrorMessage(error.toString())
+    process.exit(1)
   }
 })()

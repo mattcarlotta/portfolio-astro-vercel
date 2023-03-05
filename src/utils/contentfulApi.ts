@@ -1,7 +1,7 @@
 import { BACKGROUND, EXPLORATIONS, HOMEPAGE_CARDS, PROJECTS } from './contentfulGql'
 
 async function fetchGraphQL(query: string, preview = false) {
-  const response = await fetch(
+  const res = await fetch(
     `${import.meta.env.CONTENTFUL_BASE_URL}${import.meta.env.CONTENTFUL_SPACE_ID}`,
     {
       method: 'POST',
@@ -16,7 +16,7 @@ async function fetchGraphQL(query: string, preview = false) {
       body: JSON.stringify({ query }),
     }
   )
-  return await response.json()
+  return res.ok ? await res.json() : Promise.resolve(null)
 }
 
 export function getHomepageCards() {
@@ -44,7 +44,6 @@ export function getBackground() {
 }
 
 export function getExplorationBySlug(slug?: string) {
-  if (!slug) return null
   return fetchGraphQL(
     `query {
       explorationsCollection(where: { slug: "${slug}" }) {
@@ -72,7 +71,6 @@ export function getAllExplorations(page = 1) {
 }
 
 export function getProjectBySlug(slug?: string) {
-  if (!slug) return null
   return fetchGraphQL(
     `query {
       projectsCollection(where: { slug: "${slug}" }) {
