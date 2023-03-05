@@ -1,0 +1,33 @@
+<style is:inline>
+  .gallery {
+    margin: 0.5rem;
+    height: 8rem;
+    width: 10rem;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(22 72 122/1);
+    background-color: transparent;
+    text-align: center;
+    color: rgb(0 150 255/1);
+  }
+  .gallery:hover,
+  .gallery:focus,
+  .gallery:focus-within {
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) skew(var(--tw-skew-x))
+      skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    background-color: #021c3066;
+    transition-property: transform;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .gallery:hover h2,
+  .gallery:focus h2,
+  .gallery:focus-within h2 {
+    background-color: rgb(0 136 255/1);
+  }
+</style>

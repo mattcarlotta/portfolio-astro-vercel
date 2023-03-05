@@ -1,0 +1,71 @@
+---
+import DetailHeadline from '../../components/layout/DetailHeadline.astro'
+import FileDetails from '../../components/layout/FileDetails.astro'
+import NotFound from '../../components/layout/NotFound.astro'
+import Panel from '../../components/layout/Panel.astro'
+import PanelTitle from '../../components/layout/PanelTitle.astro'
+import Project from '../../components/layout/Project.astro'
+import GoBack from '../../components/navigation/GoBack.astro'
+import MainLayout from '../../layouts/main.astro'
+import type { CONTENTFUL_EXPLORATIONS_PAGE } from '../../types'
+import { getExplorationBySlug } from '../../utils/contentfulApi'
+
+const { id } = Astro.params
+
+const res = await getExplorationBySlug(id)
+
+const exploration: CONTENTFUL_EXPLORATIONS_PAGE = res?.data?.explorationsCollection?.items?.[0]
+---
+
+<MainLayout
+  description={exploration?.preview?.description || 'Unable to locate the requested file'}
+  title={exploration?.title || 'File Not Found'}
+  type="article"
+>
+  {
+    exploration ? (
+      <>
+        <Project>
+          <PanelTitle id="exploration-title">{exploration?.title}</PanelTitle>
+          <Panel>
+            <div class="py-2.5 px-5 tracking-wide">
+              <DetailHeadline id="details">Details:</DetailHeadline>
+              <section>
+                <FileDetails
+                  active
+                  location={`https://${exploration.sandboxId}.csb.app/`}
+                  source={`https://codesandbox.io/s/${exploration.sandboxId}`}
+                  status="In Orbit"
+                />
+              </section>
+              <section>
+                <DetailHeadline id="description">Description:</DetailHeadline>
+                <div
+                  class="mt-2 px-4 font-plain tracking-wide md:text-xl"
+                  data-testid="exploration-description"
+                >
+                  {exploration.preview.description}
+                </div>
+              </section>
+              <section>
+                <DetailHeadline id="playground">Playground:</DetailHeadline>
+                <div class="my-5 px-2.5 font-plain">
+                  <iframe
+                    src={`https://codesandbox.io/embed/${exploration.sandboxId}?codemirror=1&fontsize=14&hidenavigation=1&view=preview&hidedevtools=1&theme=dark`}
+                    title={exploration?.title}
+                    class="h-[31.25rem] w-full overflow-hidden rounded border-0"
+                    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                  />
+                </div>
+              </section>
+            </div>
+          </Panel>
+        </Project>
+        <GoBack href="/explorations/" title="Explorations" />
+      </>
+    ) : (
+      <NotFound />
+    )
+  }
+</MainLayout>

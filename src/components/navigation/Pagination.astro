@@ -1,0 +1,87 @@
+---
+interface Props {
+  category: string
+  total: number
+}
+
+const { category, total } = Astro.props
+
+const pageQuery = Astro.url.searchParams.get('page')
+const currentPage = Math.max(parseInt(pageQuery || '1', 10), 1)
+
+const pageCount = Math.ceil(total / 9)
+const pages = Array.from({ length: pageCount }).map((_, i) => i + 1)
+---
+
+<>
+  {
+    pageCount > 0 ? (
+      <div class="pagination">
+        <nav class="flex space-x-4 rounded-md md:hidden" aria-label="Pagination">
+          {currentPage >= 2 ? (
+            <a
+              class="w-24 rounded-md border border-primary-25 p-2 text-center text-sm font-semibold text-white hover:bg-primary-25"
+              href={currentPage > 2 ? `/${category}/?page=${currentPage - 1}` : `/${category}/`}
+            >
+              previous
+            </a>
+          ) : (
+            <p class="pointer-events-none w-24 cursor-not-allowed rounded-md border border-gray-400 p-2 text-center text-sm font-semibold text-gray-400">
+              previous
+            </p>
+          )}
+          <p class="px-4 py-2 text-sm text-accent">page {currentPage}</p>
+          {currentPage < pageCount ? (
+            <a
+              class="w-24 rounded-md border border-primary-25 p-2 text-center text-sm font-semibold text-white hover:bg-primary-25"
+              href={`/${category}/?page=${currentPage + 1}`}
+            >
+              next
+            </a>
+          ) : (
+            <p class="pointer-events-none w-24 cursor-not-allowed rounded-md border border-gray-400 p-2 text-center text-sm font-semibold text-gray-400">
+              next
+            </p>
+          )}
+        </nav>
+        <nav class="hidden w-full items-center justify-center space-x-4 md:flex">
+          {pages.map((page) =>
+            page === currentPage ? (
+              <p class="w-12 rounded border border-transparent bg-primary-25 px-4 py-2 text-center text-white">
+                {page}
+              </p>
+            ) : (
+              <a
+                class="w-12 rounded border border-primary-25 px-4 py-2 text-center
+        text-white transition-colors ease-in-out hover:bg-primary-25"
+                href={`/${category}/${page !== 1 ? `?page=${page}` : ''}`}
+              >
+                {page}
+              </a>
+            )
+          )}
+        </nav>
+      </div>
+    ) : null
+  }
+</>
+<style is:inline>
+  @media (hover: hover) {
+    .pagination {
+      margin-top: 10rem;
+    }
+  }
+
+  @media (hover: none) {
+    .pagination {
+      margin-top: 2rem;
+    }
+  }
+
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

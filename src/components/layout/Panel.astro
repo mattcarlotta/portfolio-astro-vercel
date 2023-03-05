@@ -1,0 +1,35 @@
+---
+import Bars from './Bars.astro'
+---
+
+<div class="text-primary-2 mb-16 w-full overflow-hidden rounded-b-sm bg-primary-700 font-bold">
+  <div class="panel-body">
+    <Bars />
+    <slot />
+  </div>
+</div>
+<style is:inline>
+  @media (hover: hover) {
+    .panel-body [data-title='bar'] {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  .panel-body {
+    --tw-shadow: inset -1px -1px 24px -9px rgb(101 130 255 / 50%), 0px 0px 26px -2px rgb(0 64 255);
+    --tw-shadow-colored: inset -1px -1px 24px -9px var(--tw-shadow-color),
+      0px 0px 26px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+      var(--tw-shadow);
+    color: rgb(0 136 255 / 1);
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    padding-bottom: 1rem;
+    border: 2px solid transparent;
+    text-align: left;
+    border-image: linear-gradient(to top, #73b9ff 0%, #005193 50%, #005193 100%);
+    border-image-slice: 1;
+  }
+</style>

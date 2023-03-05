@@ -1,0 +1,18 @@
+---
+import NotFoundIcon from '../../icons/NotfoundIcon.astro'
+import GoBack from '../navigation/GoBack.astro'
+import Panel from './Panel.astro'
+import PanelTitle from './PanelTitle.astro'
+import Project from './Project.astro'
+---
+
+<Project>
+  <PanelTitle id="">file not found</PanelTitle>
+  <Panel>
+    <div class="flex h-128 flex-col items-center justify-center space-y-8">
+      <NotFoundIcon className="text-ginormous" />
+      <p class="py-2.5 px-5 tracking-wide">Unable to locate the requested file.</p>
+    </div>
+  </Panel>
+</Project>
+<GoBack href="/" title="home" />

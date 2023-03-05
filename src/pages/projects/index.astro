@@ -1,0 +1,61 @@
+---
+import CardPreview from '../../components/layout/CardPreview.astro'
+import CardPreviewStyles from '../../components/layout/CardPreviewStyles.astro'
+import NotFound from '../../components/layout/NotFound.astro'
+import Section from '../../components/layout/Section.astro'
+import Pagination from '../../components/navigation/Pagination.astro'
+import ProjectsIcon from '../../icons/ProjectsIcon.astro'
+import MainLayout from '../../layouts/main.astro'
+import type { CONTENTFUL_PROJECTS_PAGE } from '../../types'
+import { getAllProjects } from '../../utils/contentfulApi'
+
+const pageQuery = Astro.url.searchParams.get('page')
+const currentPage = Math.max(parseInt(pageQuery || '1', 10) - 1, 0)
+
+const res = await getAllProjects(currentPage)
+
+const projects: Array<CONTENTFUL_PROJECTS_PAGE> = res?.data?.projectsCollection?.items
+const projectCount = res?.data?.projectsCollection?.total
+---
+
+<MainLayout
+  description="A collection of personal and professional projects that I've created over the years"
+  title="Projects"
+  type="article"
+>
+  {
+    projects && projects.length ? (
+      <>
+        <Section>
+          <h1 class="break-words font-stylized text-2xl leading-none md:text-3xl">
+            <ProjectsIcon className="mb-2 mr-2.5 text-3xl sm:mb-0" />
+            projects
+          </h1>
+          <p class="mx-auto mt-2 max-w-xl p-2 font-plain text-lg text-primary-25">
+            A collection of works that vary from fullstack web applications, to custom NPM packages,
+            to standalone Mac OS and Linux applications.
+          </p>
+        </Section>
+        <section class="mb-48 mt-20 flex flex-wrap items-center justify-center">
+          {projects.map(({ preview, seoDescription, ...rest }) => (
+            <>
+              <CardPreview
+                {...preview}
+                {...rest}
+                ariaLabel={`Navigate to my ${rest.title} project page`}
+                description={seoDescription}
+                href="projects"
+                alt={preview.description}
+                trailingSlash
+              />
+              <CardPreviewStyles />
+            </>
+          ))}
+          <Pagination category="projects" total={projectCount} />
+        </section>
+      </>
+    ) : (
+      <NotFound />
+    )
+  }
+</MainLayout>

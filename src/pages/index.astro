@@ -1,0 +1,48 @@
+---
+import CardPreview from '../components/layout/CardPreview.astro'
+import CardPreviewStyles from '../components/layout/CardPreviewStyles.astro'
+import NotFound from '../components/layout/NotFound.astro'
+import Orbits from '../components/layout/Orbits.astro'
+import Section from '../components/layout/Section.astro'
+import MainLayout from '../layouts/main.astro'
+import type { CONTENTFUL_PAGE_CARD } from '../types'
+import { getHomepageCards } from '../utils/contentfulApi'
+
+const res = await getHomepageCards()
+
+const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.items
+---
+
+<MainLayout
+  description="A fullstack developer who is passionate about open-source projects, helping the web development community, and building SEO optimized applications"
+>
+  {
+    cards ? (
+      <>
+        <Section>
+          <h1 class="blue-text-shadow m-0 text-3xl uppercase leading-none tracking-wider text-white sm:text-5xl">
+            Matt Carlotta
+          </h1>
+          <h2 class="m-0 p-0 text-tiny text-primary sm:text-lg">Fullstack Software Engineer</h2>
+          <Orbits />
+        </Section>
+        <section class="mt-28 flex flex-wrap items-center justify-center">
+          {cards.map(({ preview, slug, ...rest }) => (
+            <>
+              <CardPreview
+                {...preview}
+                {...rest}
+                ariaLabel={`Navigate to my ${slug} page`}
+                href={slug}
+                alt={preview.description}
+              />
+              <CardPreviewStyles />
+            </>
+          ))}
+        </section>
+      </>
+    ) : (
+      <NotFound />
+    )
+  }
+</MainLayout>

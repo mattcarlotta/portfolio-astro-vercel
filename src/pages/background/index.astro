@@ -1,0 +1,135 @@
+---
+import BackgroundEducation from '../../components/layout/BackgroundEducation.astro'
+import BackgroundTech from '../../components/layout/BackgroundTech.astro'
+import ContentfulRichText from '../../components/layout/ContentfulRichText.astro'
+import DetailHeadline from '../../components/layout/DetailHeadline.astro'
+import Image from '../../components/layout/Image.astro'
+import Info from '../../components/layout/Info.astro'
+import NotFound from '../../components/layout/NotFound.astro'
+import Panel from '../../components/layout/Panel.astro'
+import PanelTitle from '../../components/layout/PanelTitle.astro'
+import Project from '../../components/layout/Project.astro'
+import GoBack from '../../components/navigation/GoBack.astro'
+import OutsideLink from '../../components/navigation/OutsideLink.astro'
+import CodesandboxIcon from '../../icons/CodesandboxIcon.astro'
+import GithubIcon from '../../icons/GithubIcon.astro'
+import LinkIcon from '../../icons/LinkIcon.astro'
+import LocationIcon from '../../icons/LocationIcon.astro'
+import MailIcon from '../../icons/MailIcon.astro'
+import RankIcon from '../../icons/RankIcon.astro'
+import StackOverflowIcon from '../../icons/StackOverflowIcon.astro'
+import StatusIcon from '../../icons/StatusIcon.astro'
+import MainLayout from '../../layouts/main.astro'
+import type { CONTENTFUL_BACKGROUND_PAGE } from '../../types'
+import { getBackground } from '../../utils/contentfulApi'
+
+const res = await getBackground()
+const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
+---
+
+<MainLayout
+  title="Background"
+  description="Learn about my journey on how I became a fullstack software engineer"
+>
+  {
+    background ? (
+      <>
+        <Project>
+          <PanelTitle id="background-title">{background.title}</PanelTitle>
+          <Panel>
+            <div class="p-5 text-md tracking-wide md:text-xl">
+              <section>
+                <div class="mx-auto mt-3 max-w-max rounded border border-solid border-primary-600 bg-primary-700 p-4 sm:mx-0">
+                  <Image
+                    className="rounded"
+                    url={background.profileImage.url}
+                    alt={background.profileImage.description}
+                    height={175}
+                    width={175}
+                    contentType={background.profileImage.contentType}
+                  />
+                </div>
+                <DetailHeadline id="details">Details:</DetailHeadline>
+                <div class="pl-1 font-plain text-md md:pl-3">
+                  <Info className="text-lime-500">
+                    <StatusIcon className="mr-2 align-middle text-xl" />
+                    Activated September 2016
+                  </Info>
+                  <Info>
+                    <LocationIcon className="mr-2 align-middle text-xl" />
+                    {background.location}
+                  </Info>
+                  <Info>
+                    <RankIcon className="mr-2 align-middle text-xl" />
+                    {background.rank}
+                  </Info>
+                  <Info>
+                    <MailIcon className="mr-2 align-middle text-xl" />
+                    <OutsideLink
+                      ariaLabel="Click to send me an email."
+                      href="mailto:matt@mattcarlotta.com"
+                    >
+                      {background.email}
+                    </OutsideLink>
+                  </Info>
+                  {[
+                    {
+                      Icon: LinkIcon,
+                      title: 'Linkedin',
+                      href: 'https://www.linkedin.com/in/mattcarlotta/',
+                    },
+                    {
+                      Icon: GithubIcon,
+                      title: 'Github',
+                      href: 'https://github.com/mattcarlotta/',
+                    },
+                    {
+                      Icon: StackOverflowIcon,
+                      title: 'Stackoverflow',
+                      href: 'https://stackoverflow.com/users/7376526/matt-carlotta/',
+                    },
+                    {
+                      Icon: CodesandboxIcon,
+                      title: 'CodeSandBox',
+                      href: 'https://codesandbox.io/u/mattcarlotta/sandboxes/',
+                    },
+                  ].map(({ Icon, title, href }) => (
+                    <Info>
+                      <Icon className="mr-2 align-middle text-xl" />
+                      <OutsideLink ariaLabel={`Navigate to my ${title} page`} href={href} showIcon>
+                        {title}
+                      </OutsideLink>
+                    </Info>
+                  ))}
+                </div>
+              </section>
+              <section>
+                <DetailHeadline id="brief">Brief:</DetailHeadline>
+                <div class="pl-1 font-plain tracking-wide sm:pl-4">
+                  <ContentfulRichText json={background.description.json} />
+                </div>
+              </section>
+              <section>
+                <DetailHeadline id="tech-specs">Tech Specs:</DetailHeadline>
+                <BackgroundTech tech={background.tech} />
+              </section>
+              <section>
+                <DetailHeadline id="formal-education">Education:</DetailHeadline>
+                <p class="mt-2 pl-1 font-plain md:pl-4">
+                  San Jose State University | 2005-2012 | 3.5GPA
+                </p>
+              </section>
+              <section>
+                <DetailHeadline id="online-education">Online Education:</DetailHeadline>
+                <BackgroundEducation education={background.education} />
+              </section>
+            </div>
+          </Panel>
+        </Project>
+        <GoBack href="/" title="Home" />
+      </>
+    ) : (
+      <NotFound />
+    )
+  }
+</MainLayout>

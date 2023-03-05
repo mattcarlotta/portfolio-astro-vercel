@@ -1,0 +1,27 @@
+{
+  "short_name": "Matt Carlotta",
+  "name": "Personal Website",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "256x256",
+      "type": "image/svg"
+    },
+    {
+      "src": "logo_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
