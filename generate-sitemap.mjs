@@ -1,15 +1,16 @@
 import { promises as fs } from 'fs'
+import path from 'path'
 import * as dotenv from 'dotenv'
 import { logInfoMessage, logErrorMessage } from './logger.mjs'
 import { fetchSlugs } from './utils/contentful.mjs'
 
 dotenv.config()
 
-const { DOMAIN, OUTPUT } = process.env
+const { DOMAIN, OUTPUT, PWD } = process.env
+
+const FILE_OUTPUT = path.join(PWD, OUTPUT, 'sitemap-0.xml')
 
 if (!OUTPUT) throw Error('You must assign an output directory for sitemaps')
-
-const FILE_OUTPUT = `${OUTPUT}/sitemap-0.xml`
 
 const currentTime = new Date().toISOString()
 
@@ -69,5 +70,6 @@ function genSlugUrl(slug) {
     logInfoMessage(`Successfully wrote sitemap to ${FILE_OUTPUT}`)
   } catch (error) {
     logErrorMessage(error.toString())
+    process.exit(1)
   }
 })()
