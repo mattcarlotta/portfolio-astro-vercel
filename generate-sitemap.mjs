@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 import path from 'path'
+import aliasDirs from 'alias-dirs'
 import * as dotenv from 'dotenv'
 import { logInfoMessage, logErrorMessage } from './logger.mjs'
 import { fetchSlugs } from './utils/contentful.mjs'
@@ -24,7 +25,16 @@ function genSlugUrl(slug) {
 
 ;(async () => {
   try {
+    const d = aliasDirs({
+      alias: '',
+      paths: ['../path0/*', '../output/*'],
+      ignoreDirectories: ['node_modules'],
+      suppressWarnings: true,
+    })
     logInfoMessage('Fetching slugs')
+
+    console.log(JSON.stringify(d, null, 2))
+    process.exit(1)
 
     const { data } = await fetchSlugs()
 
