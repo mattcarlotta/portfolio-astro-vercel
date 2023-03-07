@@ -25,4 +25,12 @@ module.exports = {
     'no-extra-semi': 'off',
     '@typescript-eslint/no-extra-semi': 'off',
   },
+  overrides: [
+    {
+      files: ['*.cjs'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 }
