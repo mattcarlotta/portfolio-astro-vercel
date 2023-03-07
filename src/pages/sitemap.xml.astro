@@ -1,0 +1,17 @@
+---
+import { HEADER, FOOTER, generateSitemapUrl } from "../utils/generateSitemap";
+
+const sitemapURLs = [
+  "/",
+  "/project/", 
+  "/explorations/", 
+  "/background/"
+].map((slug) => generateSitemapUrl(slug)).join('\r\n')
+
+return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
+    status: 200,
+    headers: {
+      "Content-Type": "text/xml"
+    }
+  });
+---

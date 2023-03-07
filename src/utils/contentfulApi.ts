@@ -96,3 +96,29 @@ export function getAllProjects(page = 1) {
     `
   )
 }
+
+export async function fetchProjectSlugsTotal() {
+  return fetchGraphQL(
+    `query {
+      projectsCollection(order: sys_firstPublishedAt_DESC) {
+        items {
+          slug
+        }
+      }
+    }
+    `
+  )
+}
+
+export async function fetchExplorationSlugs() {
+  return fetchGraphQL(
+    `query {
+      explorationsCollection(order: sys_firstPublishedAt_DESC) {
+        items {
+          slug
+        }
+      }
+    }
+    `
+  )
+}

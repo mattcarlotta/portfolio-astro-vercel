@@ -6,12 +6,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && OUTPUT=.vercel/output/static npm run sitemap",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint \"src/**/*.ts*\"",
-    "typecheck": "tsc --project tsconfig.json",
-    "sitemap": "node generate-sitemap.mjs"
+    "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
     "@astrojs/node": "^5.0.4",
@@ -20,7 +19,6 @@
     "@astrojs/vercel": "^3.1.4",
     "astro": "^2.0.16",
     "autoprefixer": "^10.4.13",
-    "chalk": "^5.2.0",
     "dotenv": "^16.0.3",
     "postcss": "^8.4.21",
     "solid-js": "^1.6.11",

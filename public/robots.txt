@@ -6,5 +6,6 @@ Disallow:
 Host: https://macar.dev
 
 # Sitemaps
-Sitemap: https://macar.dev/sitemap.xml
-Sitemap: https://macar.dev/sitemap-0.xml
+Sitemap: https://macar.dev/sitemap.xml/
+Sitemap: https://macar.dev/projects/sitemap.xml/
+Sitemap: https://macar.dev/explorations/sitemap.xml/

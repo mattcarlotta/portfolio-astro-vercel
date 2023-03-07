@@ -139,6 +139,10 @@ export type CONTENTFUL_PROJECTS_PAGE = {
   CONTENTFUL_DESCRIPTION &
   CONTENTFUL_SLUG
 
+export type SitemapSlugs = Array<{
+  slug: string
+}>
+
 export interface AccessibleElement extends HTMLElement {
   readonly type?: string
   readonly href?: string
