@@ -1,5 +1,14 @@
 import { BACKGROUND, EXPLORATIONS, HOMEPAGE_CARDS, PROJECTS } from './contentfulGql'
 
+async function tryJSON(res: Response) {
+  try {
+    const data = await res.json()
+    return data
+  } catch (error) {
+    return null
+  }
+}
+
 async function fetchGraphQL(query: string, preview = false) {
   const res = await fetch(
     `${import.meta.env.CONTENTFUL_BASE_URL}${import.meta.env.CONTENTFUL_SPACE_ID}`,
@@ -16,7 +25,19 @@ async function fetchGraphQL(query: string, preview = false) {
       body: JSON.stringify({ query }),
     }
   )
-  return res.ok ? await res.json() : Promise.resolve(null)
+
+  const json = await tryJSON(res)
+
+  if (!res.ok) {
+    console.error(
+      `Error: Unable to complete a request to Contentful GQL endpoint. Reason: ${String(
+        json?.message
+      )}`
+    )
+    return Promise.resolve(null)
+  }
+
+  return json
 }
 
 export function getHomepageCards() {
