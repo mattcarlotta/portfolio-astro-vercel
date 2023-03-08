@@ -1,6 +1,5 @@
 ---
 import Link from '../components/navigation/Link.astro'
-import SkipToContent from '../components/navigation/SkipToContent.astro'
 import BackgroundIcon from '../icons/BackgroundIcon.astro'
 import ExplorationsIcon from '../icons/ExplorationsIcon.astro'
 import HomeIcon from '../icons/HomeIcon.astro'
@@ -189,7 +188,16 @@ const documentType = type || 'website'
     </style>
   </head>
   <body>
-    <SkipToContent />
+    <header class="overflow-hidden">
+      <a
+        id="skip-to-content"
+        aria-label="Skip to main content"
+        class="absolute left-[-9999px] top-4 z-50 rounded bg-primary-50 p-2 text-center text-white no-underline shadow-ring focus:left-5"
+        href="#main"
+      >
+        Skip to content
+      </a>
+    </header>
     <nav class="flex items-center justify-center px-4 pt-10 pb-4">
       <div class="grid grid-cols-2 gap-2 text-center text-tiny md:flex">
         {
