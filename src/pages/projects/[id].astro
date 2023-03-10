@@ -14,10 +14,13 @@ import MainLayout from '../../layouts/main.astro'
 import type { CONTENTFUL_PROJECTS_PAGE } from '../../types'
 import clsx from '../../utils/clsx'
 import { getProjectBySlug } from '../../utils/contentfulApi'
+import { showPreview } from '../../utils/showPreview'
 
-const { id, preview } = Astro.params
+const { id } = Astro.params
 
-const res = await getProjectBySlug(id, Boolean(preview))
+const preview = Astro.url.searchParams.get('preview')
+
+const res = await getProjectBySlug(id, showPreview(preview))
 
 const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.[0]
 ---
