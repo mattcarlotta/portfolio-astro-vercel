@@ -91,10 +91,12 @@ export function getAllExplorations(page = 1) {
   )
 }
 
-export function getProjectBySlug(slug?: string) {
+export function getProjectBySlug(slug?: string, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      projectsCollection(where: { slug: "${slug}" }) {
+      projectsCollection(where: { slug: "${slug}", preview: ${
+      preview ? 'true' : 'false'
+    }, limit: 1 }) {
         items {
           ${PROJECTS}
         }
