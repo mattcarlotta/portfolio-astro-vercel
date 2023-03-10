@@ -3,9 +3,9 @@
   "name": "Personal Website",
   "icons": [
     {
-      "src": "favicon.svg",
+      "src": "favicon.ico",
       "sizes": "256x256",
-      "type": "image/svg"
+      "type": "image/x-icon"
     },
     {
       "src": "logo_192x192.png",

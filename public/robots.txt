@@ -3,7 +3,7 @@ User-agent: *
 Disallow:
 
 # Host
-Host: https://macar.dev
+Host: https://macar.dev/
 
 # Sitemaps
 Sitemap: https://macar.dev/sitemap.xml/
