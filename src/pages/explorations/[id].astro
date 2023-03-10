@@ -9,10 +9,13 @@ import GoBack from '../../components/navigation/GoBack.astro'
 import MainLayout from '../../layouts/main.astro'
 import type { CONTENTFUL_EXPLORATIONS_PAGE } from '../../types'
 import { getExplorationBySlug } from '../../utils/contentfulApi'
+import { showPreview } from '../../utils/showPreview'
 
 const { id } = Astro.params
 
-const res = await getExplorationBySlug(id)
+const preview = Astro.url.searchParams.get('preview')
+
+const res = await getExplorationBySlug(id, showPreview(preview))
 
 const exploration: CONTENTFUL_EXPLORATIONS_PAGE = res?.data?.explorationsCollection?.items?.[0]
 ---
@@ -41,7 +44,7 @@ const exploration: CONTENTFUL_EXPLORATIONS_PAGE = res?.data?.explorationsCollect
               <section>
                 <DetailHeadline id="description">Description:</DetailHeadline>
                 <div
-                  class="mt-2 px-4 font-plain tracking-wide md:text-xl"
+                  class="font-plain mt-2 px-4 tracking-wide md:text-xl"
                   data-testid="exploration-description"
                 >
                   {exploration.preview.description}
@@ -49,7 +52,7 @@ const exploration: CONTENTFUL_EXPLORATIONS_PAGE = res?.data?.explorationsCollect
               </section>
               <section>
                 <DetailHeadline id="playground">Playground:</DetailHeadline>
-                <div class="my-5 px-2.5 font-plain">
+                <div class="font-plain my-5 px-2.5">
                   <iframe
                     src={`https://codesandbox.io/embed/${exploration.sandboxId}?codemirror=1&fontsize=14&hidenavigation=1&view=preview&hidedevtools=1&theme=dark`}
                     title={exploration?.title}

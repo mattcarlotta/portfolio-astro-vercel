@@ -28,10 +28,10 @@ async function fetchGraphQL(query: string, preview = false) {
 
   const json = await tryJSON(res)
 
-  if (!res.ok) {
+  if (!res.ok || json.errors) {
     console.error(
       `Error: Unable to complete a request to Contentful GQL endpoint. Reason: ${String(
-        json?.message
+        json?.errors?.[0]?.message || json?.message
       )}`
     )
     return Promise.resolve(null)
@@ -53,27 +53,33 @@ export function getHomepageCards() {
   )
 }
 
-export function getBackground() {
+export function getBackground(preview?: boolean) {
   return fetchGraphQL(
     `query {
-      background(id: "${import.meta.env.CONTENTFUL_BACKGROUND_ID}") {
+      background(id: "${import.meta.env.CONTENTFUL_BACKGROUND_ID}", preview: ${
+      preview ? 'true' : 'false'
+    }) {
         ${BACKGROUND}
       }
     }
-    `
+    `,
+    preview
   )
 }
 
-export function getExplorationBySlug(slug?: string) {
+export function getExplorationBySlug(slug?: string, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      explorationsCollection(where: { slug: "${slug}" }) {
+      explorationsCollection(where: { slug: "${slug}" }, preview: ${
+      preview ? 'true' : 'false'
+    }, limit: 1) {
         items {
           ${EXPLORATIONS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 
@@ -91,16 +97,19 @@ export function getAllExplorations(page = 1) {
   )
 }
 
-export function getProjectBySlug(slug?: string) {
+export function getProjectBySlug(slug?: string, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      projectsCollection(where: { slug: "${slug}" }) {
+      projectsCollection(where: { slug: "${slug}" }, preview: ${
+      preview ? 'true' : 'false'
+    }, limit: 1) {
         items {
           ${PROJECTS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 

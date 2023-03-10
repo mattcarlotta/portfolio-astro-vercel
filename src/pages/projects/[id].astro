@@ -14,10 +14,13 @@ import MainLayout from '../../layouts/main.astro'
 import type { CONTENTFUL_PROJECTS_PAGE } from '../../types'
 import clsx from '../../utils/clsx'
 import { getProjectBySlug } from '../../utils/contentfulApi'
+import { showPreview } from '../../utils/showPreview'
 
 const { id } = Astro.params
 
-const res = await getProjectBySlug(id)
+const preview = Astro.url.searchParams.get('preview')
+
+const res = await getProjectBySlug(id, showPreview(preview))
 
 const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.[0]
 ---
@@ -40,7 +43,7 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
               </section>
               <section>
                 <DetailHeadline id="description">Description:</DetailHeadline>
-                <div class="mt-2 pl-1 font-plain tracking-wide md:pl-4">
+                <div class="font-plain mt-2 pl-1 tracking-wide md:pl-4">
                   <ContentfulRichText json={project?.description?.json} />
                 </div>
               </section>
