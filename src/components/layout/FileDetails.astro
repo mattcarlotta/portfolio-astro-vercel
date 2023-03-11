@@ -25,7 +25,7 @@ const { active, location, source, status } = Astro.props
     location && (
       <Info>
         <DemoIcon className="mr-2.5 align-middle text-xl text-amber-500" />
-        <OutsideLink href={location} ariaLabel="Navigate to demo website" showIcon>
+        <OutsideLink href={location} ariaLabel="demo website" showIcon>
           Demo
         </OutsideLink>
       </Info>
@@ -33,6 +33,6 @@ const { active, location, source, status } = Astro.props
   }
   <Info>
     <CodeIcon className="mr-2.5 align-middle text-xl" />
-    <OutsideLink href={source} ariaLabel="Navigate to source code" showIcon>Source</OutsideLink>
+    <OutsideLink href={source} ariaLabel="source code" showIcon>Source</OutsideLink>
   </Info>
 </div>

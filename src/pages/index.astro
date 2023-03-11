@@ -32,7 +32,7 @@ const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.it
               <CardPreview
                 {...preview}
                 {...rest}
-                ariaLabel={`Navigate to my ${slug} page`}
+                ariaLabel={`${slug} page`}
                 href={slug}
                 alt={preview.description}
               />
