@@ -40,9 +40,9 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
         <Project>
           <PanelTitle id="background-title">{background.title}</PanelTitle>
           <Panel>
-            <div class="text-md p-5 tracking-wide md:text-xl">
+            <div class="p-5 text-md tracking-wide md:text-xl">
               <section>
-                <div class="border-primary-600 bg-primary-700 mx-auto mt-3 max-w-max rounded border border-solid p-4 sm:mx-0">
+                <div class="mx-auto mt-3 max-w-max rounded border border-solid border-primary-600 bg-primary-700 p-4 sm:mx-0">
                   <Image
                     className="rounded"
                     url={background.profileImage.url}
@@ -53,7 +53,7 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
                   />
                 </div>
                 <DetailHeadline id="details">Details:</DetailHeadline>
-                <div class="font-plain text-md pl-1 md:pl-3">
+                <div class="pl-1 font-plain text-md md:pl-3">
                   <Info className="text-lime-500">
                     <StatusIcon className="mr-2 align-middle text-xl" />
                     Activated September 2016
@@ -69,8 +69,8 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
                   <Info>
                     <MailIcon className="mr-2 align-middle text-xl" />
                     <OutsideLink
-                      ariaLabel="Click to send me an email."
-                      href="mailto:matt@mattcarlotta.com"
+                      ariaLabel={`send an email to ${background.email}`}
+                      href={`mailto:${background.email}`}
                     >
                       {background.email}
                     </OutsideLink>
@@ -99,7 +99,11 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
                   ].map(({ Icon, title, href }) => (
                     <Info>
                       <Icon className="mr-2 align-middle text-xl" />
-                      <OutsideLink ariaLabel={`Navigate to my ${title} page`} href={href} showIcon>
+                      <OutsideLink
+                        ariaLabel={`my ${title.toLowerCase()} page`}
+                        href={href}
+                        showIcon
+                      >
                         {title}
                       </OutsideLink>
                     </Info>
@@ -108,7 +112,7 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
               </section>
               <section>
                 <DetailHeadline id="brief">Brief:</DetailHeadline>
-                <div class="font-plain pl-1 tracking-wide sm:pl-4">
+                <div class="pl-1 font-plain tracking-wide sm:pl-4">
                   <ContentfulRichText json={background.description.json} />
                 </div>
               </section>
@@ -118,7 +122,7 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
               </section>
               <section>
                 <DetailHeadline id="formal-education">Education:</DetailHeadline>
-                <p class="font-plain mt-2 pl-1 md:pl-4">
+                <p class="mt-2 pl-1 font-plain md:pl-4">
                   San Jose State University | 2005-2012 | 3.5GPA
                 </p>
               </section>

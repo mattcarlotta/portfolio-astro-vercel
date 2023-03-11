@@ -16,7 +16,7 @@ const { education } = Astro.props
     education.data.map(({ title, url }, index) => (
       <li class={clsx(index === 0 && 'mt-2', index % 2 ? 'bg-primary-900' : 'bg-transparent')}>
         <ProjectsIcon className="mr-1 align-middle md:mr-3" />
-        <OutsideLink className="md:text-lg" ariaLabel={`Navigate to ${title}`} href={url} showIcon>
+        <OutsideLink className="md:text-lg" href={url} showIcon>
           {title}
         </OutsideLink>
       </li>

@@ -32,7 +32,7 @@ export interface Options {
 ///
 
 export type AriaLabel = {
-  ariaLabel: string
+  ariaLabel?: string
 }
 
 export type Children = {

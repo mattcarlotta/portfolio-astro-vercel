@@ -79,11 +79,7 @@ function nodeToComponent(node: CommonNode, options: Options): JSXElement {
               </span>
             ),
             [INLINES.HYPERLINK]: (node: BlockOrInline) => (
-              <OutsideLink
-                showIcon
-                ariaLabel={`Navigate to ${(node.content?.[0] as Text)?.value} page`}
-                href={node.data?.uri}
-              >
+              <OutsideLink showIcon href={node.data?.uri}>
                 {(node.content?.[0] as Text)?.value}
               </OutsideLink>
             ),

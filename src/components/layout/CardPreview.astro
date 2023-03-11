@@ -90,7 +90,7 @@ const {
       location && (
         <Tooltip title="Demo">
           <OutsideLink
-            ariaLabel={`Navigate to ${title} demo page.`}
+            ariaLabel={`${title} demo`}
             href={location}
             className="mx-1 flex items-center justify-center p-2"
           >
@@ -103,7 +103,7 @@ const {
       source && (
         <Tooltip title="Source">
           <OutsideLink
-            ariaLabel={`Navigate to ${title} source page.`}
+            ariaLabel={`${title} source code`}
             href={source}
             className="mx-1 flex items-center justify-center p-2"
           >
@@ -114,7 +114,6 @@ const {
     }
   </div>
   <Link
-    ariaLabel=""
     className="font-plain text-md focus:border-primary-100 m-2 block rounded border-2 border-solid border-transparent px-2.5 py-4 transition-colors hover:text-white focus:text-white"
     href={`/${href}/${slug}${trailingSlash ? '/' : ''}`}
   >
