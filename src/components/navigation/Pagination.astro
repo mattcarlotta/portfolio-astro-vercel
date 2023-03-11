@@ -49,14 +49,14 @@ const pages = Array.from({ length: pageCount }).map((_, i) => i + 1)
         <nav class="hidden w-full items-center justify-center space-x-4 md:flex">
           {pages.map((page) =>
             page === currentPage ? (
-              <p class="w-12 rounded border border-transparent bg-primary-25 px-4 py-2 text-center text-white">
+              <p class="w-12 rounded border-2 border-primary-25 bg-primary-1000 px-4 py-2 text-center text-white shadow-ring">
                 {page}
               </p>
             ) : (
               <a
                 aria-label={`page ${page}`}
-                class="w-12 rounded border border-primary-25 px-4 py-2 text-center
-        text-white transition-colors ease-in-out hover:bg-primary-25"
+                class="w-12 rounded border border-primary-500 px-4 py-2 text-center
+        text-gray-200 transition-colors ease-in-out hover:border-white hover:text-white"
                 href={`/${category}/${page !== 1 ? `?page=${page}` : ''}`}
               >
                 {page}
