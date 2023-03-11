@@ -50,7 +50,6 @@ export default function FocusTrapper(props: FocusTrapperProps) {
       tabbableItems = Array.from(
         focusTrapRef.querySelectorAll(ACCESSIBLE_ELEMENTS.join(','))
       ).filter((element) => isFocusable(element as AccessibleElement)) as HTMLElement[]
-      console.log('🟡 ~ file: FocusTrapper.tsx:53 ~ onMount ~ tabbableItems:', tabbableItems)
 
       if (tabbableItems.length) {
         setTabIndex(0)
