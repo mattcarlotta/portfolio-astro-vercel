@@ -20,7 +20,7 @@ const { tech } = Astro.props
         )}
       >
         <p class="text-primary-25 sm:flex sm:flex-1">{background.technology}</p>
-        <p
+        <div
           role="presentation"
           aria-label={`${background.level} out of 5 stars`}
           class="align-middle text-sm text-primary-25 text-transparent sm:flex sm:flex-1 sm:justify-end sm:space-x-2 sm:text-md"
@@ -35,7 +35,7 @@ const { tech } = Astro.props
                 .join(' ')}
             </span>
           ) : null}
-        </p>
+        </div>
       </li>
     ))
   }
