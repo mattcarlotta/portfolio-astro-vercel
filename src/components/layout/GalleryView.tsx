@@ -67,7 +67,7 @@ export default function GalleryView(props: { snapshots: Array<CONTENTFUL_IMAGE> 
                 <h2
                   id={s.title}
                   data-title="card-title"
-                  class="m-0 bg-primary-800 p-0.5 text-sm font-bold leading-4 text-white"
+                  class="m-0 bg-primary-800 p-0.5 text-base font-bold uppercase leading-4 text-white"
                 >
                   {s.title}
                 </h2>
@@ -94,7 +94,7 @@ export default function GalleryView(props: { snapshots: Array<CONTENTFUL_IMAGE> 
           )}
           <div
             data-title="backdrop"
-            class="fixed top-0 right-0 bottom-0 left-0 z-[-1] flex items-center justify-center bg-black"
+            class="fixed top-0 right-0 bottom-0 left-0 z-[-1] flex items-center justify-center bg-primary-1000"
           />
           <FocusTrapper
             class="h-full overflow-y-auto overflow-x-hidden text-center outline-0 after:inline after:h-full after:w-0 after:align-middle after:content-['']"
@@ -110,13 +110,13 @@ export default function GalleryView(props: { snapshots: Array<CONTENTFUL_IMAGE> 
               tabIndex={0}
             >
               <div class="fixed top-0 w-full">
-                <div class="absolute top-5 left-5 font-plain text-2xl text-white">
+                <div class="absolute top-5 left-5 text-2xl text-white">
                   <ImagesIcon class="mr-2.5 align-middle" />
                   {state.currentIndex + 1} of {snapsLength}
                 </div>
                 <h2
                   role="presentation"
-                  class="mt-10 p-5 text-center text-md text-white sm:mt-0 sm:text-2xl"
+                  class="mt-10 p-5 text-center text-md uppercase text-white sm:mt-0 sm:text-2xl"
                   id="modal-title"
                 >
                   {props.snapshots[state.currentIndex].title}
@@ -136,7 +136,7 @@ export default function GalleryView(props: { snapshots: Array<CONTENTFUL_IMAGE> 
                   type="button"
                   disabled={snapsLength <= 1}
                   class={clsx(
-                    'rotate-180 rounded border border-solid border-transparent bg-transparent p-4 text-[3rem] transition-[color] duration-300 ease-in-out focus:border focus:border-solid focus:border-primary-100',
+                    'rotate-180 rounded border border-solid border-transparent bg-transparent p-4 text-3xl transition-[color] duration-300 ease-in-out focus:border focus:border-solid focus:border-primary-100 sm:text-[3rem]',
                     snapsLength > 1
                       ? 'cursor-pointer text-white hover:text-primary-25 focus:text-primary-25'
                       : 'hidden'
@@ -160,7 +160,7 @@ export default function GalleryView(props: { snapshots: Array<CONTENTFUL_IMAGE> 
                   type="button"
                   disabled={snapsLength <= 1}
                   class={clsx(
-                    'rounded border border-solid border-transparent bg-transparent p-4 text-[3rem] transition-[color] duration-300 ease-in-out focus:border focus:border-solid focus:border-primary-100',
+                    'rounded border border-solid border-transparent bg-transparent p-4 text-3xl transition-[color] duration-300 ease-in-out focus:border focus:border-solid focus:border-primary-100 sm:text-[3rem]',
                     snapsLength > 1
                       ? 'cursor-pointer text-white hover:text-primary-25 focus:text-primary-25'
                       : 'hidden'

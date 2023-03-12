@@ -53,22 +53,23 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
                   />
                 </div>
                 <DetailHeadline id="details">Details:</DetailHeadline>
-                <div class="pl-1 font-plain text-md md:pl-3">
+                <div class="font-plain pl-1 text-md md:pl-3">
                   <Info className="text-lime-500">
-                    <StatusIcon className="mr-2 align-middle text-xl" />
+                    <StatusIcon className="mr-0.5 align-middle text-xl" />
                     Activated September 2016
                   </Info>
                   <Info>
-                    <LocationIcon className="mr-2 align-middle text-xl" />
+                    <LocationIcon className="mr-2.5 align-middle text-xl" />
                     {background.location}
                   </Info>
                   <Info>
-                    <RankIcon className="mr-2 align-middle text-xl" />
+                    <RankIcon className="mr-2.5 align-middle text-xl" />
                     {background.rank}
                   </Info>
                   <Info>
                     <MailIcon className="mr-2 align-middle text-xl" />
                     <OutsideLink
+                      className="inline-block"
                       ariaLabel={`send an email to ${background.email}`}
                       href={`mailto:${background.email}`}
                     >
@@ -100,6 +101,7 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
                     <Info>
                       <Icon className="mr-2 align-middle text-xl" />
                       <OutsideLink
+                        className="inline-block"
                         ariaLabel={`my ${title.toLowerCase()} page`}
                         href={href}
                         showIcon
@@ -112,7 +114,7 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
               </section>
               <section>
                 <DetailHeadline id="brief">Brief:</DetailHeadline>
-                <div class="pl-1 font-plain tracking-wide sm:pl-4">
+                <div class="pl-1 tracking-wide sm:pl-4">
                   <ContentfulRichText json={background.description.json} />
                 </div>
               </section>
@@ -122,9 +124,7 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
               </section>
               <section>
                 <DetailHeadline id="formal-education">Education:</DetailHeadline>
-                <p class="mt-2 pl-1 font-plain md:pl-4">
-                  San Jose State University | 2005-2012 | 3.5GPA
-                </p>
+                <p class="mt-2 pl-1 md:pl-4">San Jose State University | 2005-2012 | 3.5GPA</p>
               </section>
               <section>
                 <DetailHeadline id="online-education">Online Education:</DetailHeadline>

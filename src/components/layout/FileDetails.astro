@@ -16,7 +16,7 @@ interface Props {
 const { active, location, source, status } = Astro.props
 ---
 
-<div class="mb-5 pl-1 font-plain text-md md:pl-4">
+<div class="mb-5 pl-1 text-md md:pl-4">
   <Info className={clsx(active ? 'text-lime-500' : 'text-gray-400')}>
     <StatusIcon className="mr-2.5 align-middle text-xl" />
     {status}
@@ -25,7 +25,7 @@ const { active, location, source, status } = Astro.props
     location && (
       <Info>
         <DemoIcon className="mr-2.5 align-middle text-xl text-amber-500" />
-        <OutsideLink href={location} ariaLabel="demo website" showIcon>
+        <OutsideLink className="inline-block" href={location} ariaLabel="demo website" showIcon>
           Demo
         </OutsideLink>
       </Info>
@@ -33,6 +33,8 @@ const { active, location, source, status } = Astro.props
   }
   <Info>
     <CodeIcon className="mr-2.5 align-middle text-xl" />
-    <OutsideLink href={source} ariaLabel="source code" showIcon>Source</OutsideLink>
+    <OutsideLink className="inline-block" href={source} ariaLabel="source code" showIcon>
+      Source
+    </OutsideLink>
   </Info>
 </div>

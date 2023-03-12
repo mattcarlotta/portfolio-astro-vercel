@@ -43,7 +43,7 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
               </section>
               <section>
                 <DetailHeadline id="description">Description:</DetailHeadline>
-                <div class="font-plain mt-2 pl-1 tracking-wide md:pl-4">
+                <div class="mt-2 pl-1 tracking-wide md:pl-4">
                   <ContentfulRichText json={project?.description?.json} />
                 </div>
               </section>
@@ -53,12 +53,11 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
                   {project.tech.map((item, idx) => (
                     <li
                       class={clsx(
-                        'font-plain',
                         idx === 0 && 'mt-2',
                         idx % 2 ? 'bg-primary-900' : 'bg-transparent'
                       )}
                     >
-                      <ProjectsIcon className="mr-3 align-middle" />
+                      <ProjectsIcon className="mr-1 align-middle" />
                       {item}
                     </li>
                   ))}
