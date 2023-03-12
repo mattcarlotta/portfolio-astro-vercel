@@ -27,11 +27,14 @@ const projectCount = res?.data?.projectsCollection?.total
     projects && projects.length ? (
       <>
         <Section>
-          <h1 class="break-words font-stylized text-2xl leading-none md:text-3xl">
-            <ProjectsIcon className="mb-2 mr-2.5 text-3xl sm:mb-0" />
-            projects
+          <h1
+            slot="within-header"
+            class="space-x-2.5 break-words font-stylized text-2xl leading-none md:text-3xl"
+          >
+            <ProjectsIcon className="text-3xl sm:mb-0" />
+            <span>projects</span>
           </h1>
-          <p class="mx-auto mt-2 max-w-xl p-2 text-lg font-bold text-primary-25">
+          <p slot="within-header" class="max-w-xl p-2 text-lg font-bold text-primary-25">
             A collection of works that vary from fullstack web applications, to custom NPM packages,
             to standalone Mac OS and Linux applications.
           </p>

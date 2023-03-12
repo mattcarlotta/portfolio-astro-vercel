@@ -20,13 +20,16 @@ const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.it
     cards ? (
       <>
         <Section>
-          <h1 class="blue-text-shadow m-0 font-stylized text-3xl uppercase leading-none tracking-wider text-white sm:text-5xl">
+          <h1
+            slot="within-header"
+            class="blue-text-shadow font-stylized text-3xl uppercase leading-none tracking-wider text-white sm:text-5xl"
+          >
             Matt Carlotta
           </h1>
-          <h2 class="m-0 p-0 font-stylized text-tiny text-primary sm:text-lg">
+          <h2 slot="within-header" class="font-stylized text-tiny text-primary sm:text-lg">
             Fullstack Software Engineer
           </h2>
-          <Orbits />
+          <Orbits slot="after-header" />
         </Section>
         <section class="mt-28 flex flex-wrap items-center justify-center">
           {cards.map(({ preview, slug, ...rest }) => (
