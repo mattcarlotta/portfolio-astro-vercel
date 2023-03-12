@@ -20,7 +20,7 @@ const rescale = isRescaled ? `fit=scale&h=${newHeight}&w=${newWidth}` : ''
 ---
 
 <picture>
-  <source src-set={`${url}?fm=webp${isRescaled ? `&${rescale}` : ''}`} type="image/webp" />
-  <source src-set={`${url}${isRescaled ? `?${rescale}` : ''}`} type={contentType} />
+  <source srcset={`${url}?fm=webp${isRescaled ? `&${rescale}` : ''}`} type="image/webp" />
+  <source srcset={`${url}${isRescaled ? `?${rescale}` : ''}`} type={contentType} />
   <img src={url} height={newHeight} width={newWidth} alt={alt} class={className} />
 </picture>
