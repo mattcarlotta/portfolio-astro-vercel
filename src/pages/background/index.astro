@@ -41,17 +41,17 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
           <PanelTitle id="background-title">{background.title}</PanelTitle>
           <Panel>
             <div class="p-5 text-md tracking-wide md:text-xl">
+              <div class="mt-3 flex w-full items-center justify-center rounded border border-solid border-primary-600 bg-primary-700 p-4 sm:max-w-max sm:justify-start">
+                <Image
+                  className="rounded"
+                  url={background.profileImage.url}
+                  alt={background.profileImage.description}
+                  height={175}
+                  width={175}
+                  contentType={background.profileImage.contentType}
+                />
+              </div>
               <section>
-                <div class="mx-auto mt-3 max-w-max rounded border border-solid border-primary-600 bg-primary-700 p-4 sm:mx-0">
-                  <Image
-                    className="rounded"
-                    url={background.profileImage.url}
-                    alt={background.profileImage.description}
-                    height={175}
-                    width={175}
-                    contentType={background.profileImage.contentType}
-                  />
-                </div>
                 <DetailHeadline id="details">Details:</DetailHeadline>
                 <div class="font-plain pl-1 text-md md:pl-3">
                   <Info className="text-lime-500">
