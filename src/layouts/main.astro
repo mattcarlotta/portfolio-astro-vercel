@@ -15,6 +15,7 @@ interface Props {
 
 const { description, title, type } = Astro.props
 const canonicalURL = Astro.url.toString()
+const pathname = Astro.url.pathname
 const documentTitle = concatTitle(title, description)
 const documentType = type || 'website'
 ---
@@ -107,14 +108,6 @@ const documentType = type || 'website'
         border-width: 0px;
       }
 
-      :focus-visible {
-        color: #fff;
-        outline-style: dotted !important;
-        outline-width: 2px;
-        outline-offset: 2px;
-        outline-color: #008ef1 !important;
-      }
-
       img,
       svg,
       iframe {
@@ -184,6 +177,7 @@ const documentType = type || 'website'
         box-shadow: 0px 0px 10px 4px rgba(0, 2, 14, 0.3);
       }
     </style>
+    <slot name="head" />
   </head>
   <body>
     <header class="overflow-hidden">
@@ -222,20 +216,27 @@ const documentType = type || 'website'
               href: '/background/',
               Icon: BackgroundIcon,
             },
-          ].map(({ Icon, href, page }) => (
-            <Link
-              className={clsx(
-                'p-2.5',
-                canonicalURL.includes(page) &&
-                  'rounded !border-primary-100 !text-white shadow-ring transition-[box-shadow] duration-300 ease-in-out'
-              )}
-              ariaLabel={`${page} page`}
-              href={href}
-            >
-              <Icon className="mr-2 !hidden text-md xs:!block" />
-              {page}
-            </Link>
-          ))
+          ].map(({ Icon, href, page }) =>
+            pathname === href && pathname === '/' ? (
+              <p class="flex w-full items-center justify-center rounded border-2 border-solid border-transparent p-2.5 text-primary no-underline sm:mx-0 md:mx-1 md:w-auto md:p-2">
+                <Icon className="mr-2 !hidden text-md xs:!block" />
+                <span>{page}</span>
+              </p>
+            ) : (
+              <Link
+                className={clsx(
+                  'p-2.5',
+                  canonicalURL.includes(page) &&
+                    'rounded !border-primary-100 !text-white shadow-ring transition-[box-shadow] duration-300 ease-in-out'
+                )}
+                ariaLabel={`${page} page`}
+                href={href}
+              >
+                <Icon className="mr-2 !hidden text-md xs:!block" />
+                <span>{page}</span>
+              </Link>
+            )
+          )
         }
       </div>
     </nav>

@@ -51,7 +51,7 @@ const {
 <Card>
   <header>
     <h2
-      id={title}
+      id={title.replace(/ /g, '_')}
       data-title="card-title"
       class="m-0 bg-primary-800 p-1 text-md font-bold uppercase leading-4 text-white"
     >
@@ -113,10 +113,9 @@ const {
       )
     }
   </div>
-  <Link
-    className="text-md focus:border-primary-100 m-2 block rounded border-2 border-solid font-bold border-transparent px-2.5 py-4 transition-colors hover:text-white focus:text-white"
-    href={`/${href}/${slug}${trailingSlash ? '/' : ''}`}
+  <p
+    class="m-2 block rounded border-2 border-solid border-transparent px-2.5 py-4 text-md font-bold transition-colors"
   >
     {description}
-  </Link>
+  </p>
 </Card>

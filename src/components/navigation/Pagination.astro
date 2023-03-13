@@ -68,23 +68,3 @@ const pages = Array.from({ length: pageCount }).map((_, i) => i + 1)
     ) : null
   }
 </>
-<style is:inline>
-  @media (hover: hover) {
-    .pagination {
-      margin-top: 10rem;
-    }
-  }
-
-  @media (hover: none) {
-    .pagination {
-      margin-top: 2rem;
-    }
-  }
-
-  .pagination {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
