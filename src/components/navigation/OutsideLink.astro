@@ -25,4 +25,8 @@ const { ariaLabel, className, href, showIcon } = Astro.props
 >
   <slot />
 </a>
-{showIcon && <ExternalLinkIcon className="hidden align-top text-base md:inline-block" />}
+{
+  showIcon && (
+    <ExternalLinkIcon className="-ml-1.5 hidden align-top text-base text-light-blue md:inline-block" />
+  )
+}
