@@ -3,7 +3,6 @@ import ContentfulRichText from '../../components/layout/ContentfulRichText.astro
 import DetailHeadline from '../../components/layout/DetailHeadline.astro'
 import FileDetails from '../../components/layout/FileDetails.astro'
 import GalleryView from '../../components/layout/GalleryView'
-import GalleryViewStyles from '../../components/layout/GalleryViewStyles.astro'
 import NotFound from '../../components/layout/NotFound.astro'
 import Panel from '../../components/layout/Panel.astro'
 import PanelTitle from '../../components/layout/PanelTitle.astro'
@@ -30,6 +29,76 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
   title={project?.title || 'File Not Found'}
   type="article"
 >
+  <style slot="head" is:inline>
+    @media (hover: hover) {
+      .panel-body [data-title='bar'] {
+        display: block;
+        opacity: 1;
+      }
+    }
+
+    .panel-body {
+      --tw-shadow: inset -1px -1px 24px -9px rgb(101 130 255 / 50%), 0px 0px 26px -2px rgb(0 64 255);
+      --tw-shadow-colored: inset -1px -1px 24px -9px var(--tw-shadow-color),
+        0px 0px 26px -2px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+        var(--tw-shadow);
+      color: rgb(0 136 255 / 1);
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.25rem;
+      padding-bottom: 1rem;
+      border: 2px solid transparent;
+      text-align: left;
+      border-image: linear-gradient(to top, #73b9ff 0%, #005193 50%, #005193 100%);
+      border-image-slice: 1;
+    }
+    .markdown ul {
+      margin: 0.75rem 0;
+      list-style-type: disc;
+    }
+
+    .markdown ul li {
+      margin-top: -0.5rem;
+      margin-left: 2.5rem;
+    }
+
+    .markdown p {
+      margin: 0.375rem 0;
+      padding: 0.375rem 0;
+    }
+    .gallery {
+      margin: 0.5rem;
+      height: 8rem;
+      width: 10rem;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 0.25rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(22 72 122/1);
+      background-color: transparent;
+      text-align: center;
+      color: rgb(0 150 255/1);
+    }
+    .gallery:hover,
+    .gallery:focus,
+    .gallery:focus-within {
+      --tw-scale-x: 1.1;
+      --tw-scale-y: 1.1;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) skew(var(--tw-skew-x))
+        skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      background-color: #021c3066;
+      transition-property: transform;
+      transition-duration: 0.2s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .gallery:hover h2,
+    .gallery:focus h2,
+    .gallery:focus-within h2 {
+      background-color: rgb(0 136 255/1);
+    }
+  </style>
   {
     project ? (
       <>
@@ -64,10 +133,7 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
                 </ul>
               </section>
               {project.snapshotsCollection.items.length > 0 ? (
-                <>
-                  <GalleryView client:visible snapshots={project.snapshotsCollection.items} />
-                  <GalleryViewStyles />
-                </>
+                <GalleryView client:visible snapshots={project.snapshotsCollection.items} />
               ) : null}
             </div>
           </Panel>
