@@ -245,13 +245,13 @@ const documentType = type || 'website'
         <slot />
       </div>
       <footer
-        class="mt-20 flex flex-col items-center justify-center whitespace-nowrap pb-2 text-md font-extrabold text-accent sm:flex-row sm:space-x-4"
+        class="mt-20 mb-10 flex flex-col items-center justify-center whitespace-nowrap pb-2 text-md font-extrabold uppercase text-accent sm:mb-0 sm:flex-row sm:space-x-4"
       >
-        <p>&#169;{new Date().getFullYear()} Matt Carlotta</p>
-        <span class="hidden sm:inline-block">|</span>
-        <Link className="md:!inline-block !p-0 w-auto" href="/accessibility/">Accessibility</Link>
-        <span class="hidden sm:inline-block">|</span>
-        <Link className="md:!inline-block !p-0 w-auto" href="/sitemap/">Site Map</Link>
+        <p class="mb-2 sm:mb-0 sm:p-2.5">&#169;{new Date().getFullYear()} Matt Carlotta</p>
+        <span class="invisible sm:visible">|</span>
+        <Link className="md:!inline-block w-auto p-2.5" href="/accessibility/">Accessibility</Link>
+        <span class="invisible sm:visible">|</span>
+        <Link className="md:!inline-block w-auto p-2.5" href="/sitemap/">Site Map</Link>
       </footer>
     </main>
   </body>
