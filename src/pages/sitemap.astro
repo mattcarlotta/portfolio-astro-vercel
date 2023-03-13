@@ -32,7 +32,7 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
       </h1>
     </section>
     <section
-      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-4 pl-2 pr-6"
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-6 pl-2 pr-6"
     >
       <header>
         <h2>
@@ -46,11 +46,11 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
           </Link>
         </h2>
       </header>
-      <ul class="ml-5 list-disc space-y-1 pl-5 text-lg uppercase">
+      <ul class="ml-5 list-disc space-y-4 pl-5 text-lg uppercase">
         {
           projectSlugs?.map(({ slug, title }, idx) => (
             <li class={clsx(idx === 0 && 'mt-4', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
-              <Link className="!inline-block" href={`/projects/${slug}`}>
+              <Link className="!inline-block w-auto py-2.5 md:!py-1" href={`/projects/${slug}`}>
                 {title}
               </Link>
             </li>
@@ -59,7 +59,7 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
       </ul>
     </section>
     <section
-      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-4 pl-2 pr-6"
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-6 pl-2 pr-6"
     >
       <header>
         <h2>
@@ -73,11 +73,11 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
           </Link>
         </h2>
       </header>
-      <ul class="ml-5 list-disc space-y-1 pl-5 text-lg uppercase">
+      <ul class="ml-5 list-disc space-y-4 pl-5 text-lg uppercase">
         {
           explorationSlus?.map(({ slug, title }, idx) => (
-            <li class={clsx(idx === 0 && 'mt-4', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
-              <Link className="!inline-block" href={`/explorations/${slug}`}>
+            <li class={clsx(idx === 0 && 'mt-6', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
+              <Link className="!inline-block w-auto py-2.5 md:!py-1" href={`/explorations/${slug}`}>
                 {title}
               </Link>
             </li>
@@ -86,7 +86,7 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
       </ul>
     </section>
     <section
-      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-4 pl-2 pr-6"
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-6 pl-2 pr-6"
     >
       <header>
         <h2>
