@@ -1,14 +1,7 @@
 ---
-import Section from '../components/layout/Section.astro'
-import Link from '../components/navigation/Link.astro'
 import OutsideLink from '../components/navigation/OutsideLink.astro'
-import BackgroundIcon from '../icons/BackgroundIcon.astro'
-import ExplorationsIcon from '../icons/ExplorationsIcon.astro'
-import ProjectsIcon from '../icons/ProjectsIcon.astro'
-import SitemapIcon from '../icons/SitemapIcon.astro'
 import MainLayout from '../layouts/main.astro'
 import type { SitemapSlugs } from '../types'
-import clsx from '../utils/clsx'
 import { fetchProjectSlugs, fetchExplorationSlugs } from '../utils/contentfulApi'
 
 const projectSlugsRes = await fetchProjectSlugs()
@@ -21,7 +14,7 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
 <MainLayout
   description="A fullstack developer who is passionate about open-source projects, helping the web development community, and building SEO optimized applications"
 >
-  <div class="space-y-8">
+  <div class="space-y-8 text-primary-25 md:text-xl">
     <section
       class="mt-5 mb-10 rounded border border-solid border-primary-600 bg-primary-700 p-5 text-center"
     >
@@ -32,10 +25,10 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
       </h1>
     </section>
     <section
-      class="space-y-4 rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 p-5 md:text-lg"
+      class="space-y-4 rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 p-5 font-semibold tracking-wide md:p-7 md:text-lg"
     >
       <header>
-        <h2 class="text-xl leading-none md:text-2xl">Web Accessibility Statement</h2>
+        <h2 class="text-xl leading-none md:text-3xl">Web Accessibility Statement</h2>
       </header>
       <p>
         I am committed to fostering a culture of collaboration, diversity, and inclusion. This
