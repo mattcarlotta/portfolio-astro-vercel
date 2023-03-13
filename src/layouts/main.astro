@@ -28,7 +28,6 @@ const documentType = type || 'website'
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="dns-prefetch" href="https://images.ctfassets.net/" />
-    <link rel="preload" as="image" href="/bg.webp" />
     <link rel="apple-touch-icon" sizes="192x192" href="/logo_192x192.png" />
     <link
       rel="preload"
@@ -83,13 +82,9 @@ const documentType = type || 'website'
       }
 
       body {
-        background: url('/bg.webp');
         color: #fff;
         margin: 0;
         background-color: rgb(1 0 7 / 1);
-        background-attachment: fixed;
-        background-position: 50%;
-        background-repeat: no-repeat;
       }
 
       .blue-text-shadow {
