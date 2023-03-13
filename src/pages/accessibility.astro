@@ -1,14 +1,6 @@
 ---
 import OutsideLink from '../components/navigation/OutsideLink.astro'
 import MainLayout from '../layouts/main.astro'
-import type { SitemapSlugs } from '../types'
-import { fetchProjectSlugs, fetchExplorationSlugs } from '../utils/contentfulApi'
-
-const projectSlugsRes = await fetchProjectSlugs()
-const explorationSlugRes = await fetchExplorationSlugs()
-
-const projectSlugs: SitemapSlugs = projectSlugsRes?.data?.projectsCollection?.items || []
-const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsCollection?.items || []
 ---
 
 <MainLayout

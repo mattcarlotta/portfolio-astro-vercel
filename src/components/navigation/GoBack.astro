@@ -9,13 +9,10 @@ const { href, title } = Astro.props
 ---
 
 <div class="flex items-center justify-center">
-  <a
-    class="rounded border-2 border-solid border-transparent text-center text-xl font-bold text-primary no-underline transition-[box-shadow] duration-300 ease-in-out hover:text-white focus:text-white focus:shadow-ring sm:mx-0 md:mx-1 md:w-auto md:p-2"
-    href={href}
-  >
+  <Link className="text-xl font-bold w-auto" href={href}>
     <div class="flex items-center justify-center space-x-2">
       <GoHomeIcon className="text-xl" />
       <span>Go back to {title} page</span>
     </div>
-  </a>
+  </Link>
 </div>

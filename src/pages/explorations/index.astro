@@ -23,6 +23,13 @@ const explorationCount = res?.data?.explorationsCollection?.total
   type="article"
 >
   <style slot="head" is:inline>
+    .pagination {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     @media (hover: hover) {
       .pagination {
         margin-top: 10rem;
@@ -35,12 +42,6 @@ const explorationCount = res?.data?.explorationsCollection?.total
       }
     }
 
-    .pagination {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
     @media (hover: hover) {
       .card {
         position: relative;
@@ -127,7 +128,7 @@ const explorationCount = res?.data?.explorationsCollection?.total
         margin-left: 0.25rem;
         margin-right: 0.25rem;
         margin-bottom: 2rem;
-        height: auto;
+        height: 26rem;
         width: 100%;
         border-bottom-right-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
@@ -141,9 +142,58 @@ const explorationCount = res?.data?.explorationsCollection?.total
       @media (min-width: 640px) {
         .card {
           margin-bottom: 3.5rem;
-          height: 30rem;
           width: 18.75rem;
         }
+      }
+      @media (max-width: 640px) {
+        .card {
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion) {
+      .card {
+        height: 26rem;
+        transform: none;
+        background-color: #00020e;
+        box-shadow: unset;
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          height: auto;
+          width: 100%;
+        }
+      }
+      .card > [data-title='card-container'] {
+        height: 100%;
+      }
+
+      .card:hover,
+      .card:focus,
+      .card:focus-within {
+        transform: none;
+        transition-property: none;
+        transition-duration: none;
+        transition-timing-function: none;
+      }
+
+      .card:hover > [data-title='card-container'],
+      .card:focus > [data-title='card-container'],
+      .card:focus-within > [data-title='card-container'] {
+        position: unset;
+      }
+
+      .card:hover > [data-title='placeholder'],
+      .card:focus > [data-title='placeholder'],
+      .card:focus-within > [data-title='placeholder'] {
+        display: none;
+      }
+
+      .pagination {
+        margin-top: 2rem;
       }
     }
   </style>
