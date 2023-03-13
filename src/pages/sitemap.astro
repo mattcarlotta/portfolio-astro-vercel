@@ -14,6 +14,7 @@ const explorationSlugRes = await fetchExplorationSlugs()
 
 const projectSlugs: SitemapSlugs = projectSlugsRes?.data?.projectsCollection?.items || []
 const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsCollection?.items || []
+const siteMapsUrls = ['/', 'projects', 'explorations']
 ---
 
 <MainLayout
@@ -51,7 +52,7 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
         {
           projectSlugs?.map(({ slug, title }, idx) => (
             <li class={clsx(idx === 0 && 'mt-4', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
-              <Link className="!inline-block w-auto py-2.5 md:!py-1" href={`/projects/${slug}`}>
+              <Link className="!inline-block w-auto py-2.5 md:!py-1" href={`/projects/${slug}/`}>
                 {title}
               </Link>
             </li>
@@ -78,7 +79,10 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
         {
           explorationSlus?.map(({ slug, title }, idx) => (
             <li class={clsx(idx === 0 && 'mt-6', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
-              <Link className="!inline-block w-auto py-2.5 md:!py-1" href={`/explorations/${slug}`}>
+              <Link
+                className="!inline-block w-auto py-2.5 md:!py-1"
+                href={`/explorations/${slug}/`}
+              >
                 {title}
               </Link>
             </li>
@@ -101,6 +105,32 @@ const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsColl
           </Link>
         </h2>
       </header>
+    </section>
+    <section
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-6 pl-2 pr-6"
+    >
+      <header>
+        <h2
+          class="flex items-center justify-center space-x-4 p-2.5 font-stylized text-xl leading-none tracking-wider text-white md:justify-start md:text-3xl"
+        >
+          <SitemapIcon />
+          <span>xml site maps</span>
+        </h2>
+      </header>
+      <ul class="ml-5 list-disc space-y-4 pl-5 text-lg uppercase">
+        {
+          siteMapsUrls.map((href, idx) => (
+            <li class={clsx(idx === 0 && 'mt-6', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
+              <Link
+                className="!inline-block w-auto py-2.5 md:!py-1"
+                href={`${href === '/' ? href : `/${href}/`}sitemap.xml/`}
+              >
+                {href === '/' ? 'home' : href}
+              </Link>
+            </li>
+          ))
+        }
+      </ul>
     </section>
   </article>
 </MainLayout>
