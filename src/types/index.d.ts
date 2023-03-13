@@ -141,6 +141,7 @@ export type CONTENTFUL_PROJECTS_PAGE = {
 
 export type SitemapSlugs = Array<{
   slug: string
+  title: string
 }>
 
 export interface AccessibleElement extends HTMLElement {

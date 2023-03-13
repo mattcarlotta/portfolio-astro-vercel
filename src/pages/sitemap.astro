@@ -1,0 +1,105 @@
+---
+import Section from '../components/layout/Section.astro'
+import Link from '../components/navigation/Link.astro'
+import BackgroundIcon from '../icons/BackgroundIcon.astro'
+import ExplorationsIcon from '../icons/ExplorationsIcon.astro'
+import ProjectsIcon from '../icons/ProjectsIcon.astro'
+import SitemapIcon from '../icons/SitemapIcon.astro'
+import MainLayout from '../layouts/main.astro'
+import type { SitemapSlugs } from '../types'
+import clsx from '../utils/clsx'
+import { fetchProjectSlugs, fetchExplorationSlugs } from '../utils/contentfulApi'
+
+const projectSlugsRes = await fetchProjectSlugs()
+const explorationSlugRes = await fetchExplorationSlugs()
+
+const projectSlugs: SitemapSlugs = projectSlugsRes?.data?.projectsCollection?.items || []
+const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsCollection?.items || []
+---
+
+<MainLayout
+  description="A fullstack developer who is passionate about open-source projects, helping the web development community, and building SEO optimized applications"
+>
+  <div class="space-y-8">
+    <section
+      class="mt-5 mb-10 rounded border border-solid border-primary-600 bg-primary-700 p-5 text-center md:p-10"
+    >
+      <h1
+        class="blue-text-shadow flex items-center justify-center space-x-4 font-stylized text-3xl leading-none tracking-wider text-white md:space-x-8 md:text-[3rem]"
+      >
+        <SitemapIcon />
+        <span>site map</span>
+      </h1>
+    </section>
+    <section
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-4 pl-2 pr-6"
+    >
+      <header>
+        <h2>
+          <Link
+            underline
+            className="space-x-4 !text-white font-stylized text-xl leading-none md:text-3xl md:!inline-block"
+            href="/projects/"
+          >
+            <ProjectsIcon className="text-3xl" />
+            <span>projects</span>
+          </Link>
+        </h2>
+      </header>
+      <ul class="ml-5 list-disc space-y-1 pl-5 text-lg uppercase">
+        {
+          projectSlugs?.map(({ slug, title }, idx) => (
+            <li class={clsx(idx === 0 && 'mt-4', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
+              <Link className="!inline-block" href={`/projects/${slug}`}>
+                {title}
+              </Link>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-4 pl-2 pr-6"
+    >
+      <header>
+        <h2>
+          <Link
+            underline
+            className="space-x-4 !text-white font-stylized text-xl leading-none md:text-3xl md:!inline-block"
+            href="/explorations/"
+          >
+            <ExplorationsIcon className="text-2xl" />
+            <span>explorations</span>
+          </Link>
+        </h2>
+      </header>
+      <ul class="ml-5 list-disc space-y-1 pl-5 text-lg uppercase">
+        {
+          explorationSlus?.map(({ slug, title }, idx) => (
+            <li class={clsx(idx === 0 && 'mt-4', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
+              <Link className="!inline-block" href={`/explorations/${slug}`}>
+                {title}
+              </Link>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section
+      class="rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 py-4 pl-2 pr-6"
+    >
+      <header>
+        <h2>
+          <Link
+            underline
+            className="space-x-4 !text-white font-stylized text-xl leading-none md:text-3xl md:!inline-block"
+            href="/background/"
+          >
+            <BackgroundIcon className="text-2xl" />
+            <span>background</span>
+          </Link>
+        </h2>
+      </header>
+    </section>
+  </div>
+</MainLayout>
