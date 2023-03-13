@@ -19,7 +19,9 @@ const explorationCount = res?.data?.explorationsCollection?.total
 
 <MainLayout
   description="A small collection of codesandbox explorations I've created over the years"
-  title="Explorations"
+  title={!explorationCount || currentPage <= 0
+    ? 'Explorations'
+    : `Explorations Page ${currentPage + 1}`}
   type="article"
 >
   <style slot="head" is:inline>

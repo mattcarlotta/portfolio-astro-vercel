@@ -19,7 +19,7 @@ const projectCount = res?.data?.projectsCollection?.total
 
 <MainLayout
   description="A collection of personal and professional projects that I've created over the years"
-  title="Projects"
+  title={!projectCount || currentPage <= 0 ? 'Projects' : `Projects Page ${currentPage + 1}`}
   type="article"
 >
   <style slot="head" is:inline>
