@@ -127,12 +127,13 @@ export function getAllProjects(page = 1) {
   )
 }
 
-export async function fetchProjectSlugsTotal() {
+export async function fetchProjectSlugs() {
   return fetchGraphQL(
     `query {
       projectsCollection(order: sys_firstPublishedAt_DESC) {
         items {
           slug
+          title
         }
       }
     }
@@ -146,6 +147,7 @@ export async function fetchExplorationSlugs() {
       explorationsCollection(order: sys_firstPublishedAt_DESC) {
         items {
           slug
+          title
         }
       }
     }

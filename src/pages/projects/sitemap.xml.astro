@@ -1,9 +1,9 @@
 ---
 import type { SitemapSlugs } from "../../types";
-import { fetchProjectSlugsTotal } from "../../utils/contentfulApi";
+import { fetchProjectSlugs } from "../../utils/contentfulApi";
 import { HEADER, FOOTER, generateSitemapUrl } from "../../utils/generateSitemap";
 
-const res = await fetchProjectSlugsTotal()
+const res = await fetchProjectSlugs()
 
 const data: SitemapSlugs = res?.data?.projectsCollection?.items
 

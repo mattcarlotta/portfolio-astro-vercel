@@ -1,0 +1,81 @@
+---
+import Section from '../components/layout/Section.astro'
+import Link from '../components/navigation/Link.astro'
+import OutsideLink from '../components/navigation/OutsideLink.astro'
+import BackgroundIcon from '../icons/BackgroundIcon.astro'
+import ExplorationsIcon from '../icons/ExplorationsIcon.astro'
+import ProjectsIcon from '../icons/ProjectsIcon.astro'
+import SitemapIcon from '../icons/SitemapIcon.astro'
+import MainLayout from '../layouts/main.astro'
+import type { SitemapSlugs } from '../types'
+import clsx from '../utils/clsx'
+import { fetchProjectSlugs, fetchExplorationSlugs } from '../utils/contentfulApi'
+
+const projectSlugsRes = await fetchProjectSlugs()
+const explorationSlugRes = await fetchExplorationSlugs()
+
+const projectSlugs: SitemapSlugs = projectSlugsRes?.data?.projectsCollection?.items || []
+const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsCollection?.items || []
+---
+
+<MainLayout
+  description="A fullstack developer who is passionate about open-source projects, helping the web development community, and building SEO optimized applications"
+>
+  <div class="space-y-8">
+    <section
+      class="mt-5 mb-10 rounded border border-solid border-primary-600 bg-primary-700 p-5 text-center"
+    >
+      <h1
+        class="blue-text-shadow font-stylized text-3xl leading-none tracking-wider text-white md:space-x-8 md:text-[3rem]"
+      >
+        accessibility
+      </h1>
+    </section>
+    <section
+      class="space-y-4 rounded border border-solid border-primary-600 bg-primary-1000 bg-opacity-75 p-5 md:text-lg"
+    >
+      <header>
+        <h2 class="text-xl leading-none md:text-2xl">Web Accessibility Statement</h2>
+      </header>
+      <p>
+        I am committed to fostering a culture of collaboration, diversity, and inclusion. This
+        effort includes ensuring that my website is usable by all people, including those with
+        visual, hearing, cognitive, and motor impairments.
+      </p>
+      <p>
+        I try to follow the principles of universal design to ensure that my site is flexible,
+        adaptable to users&apos; needs, and accessible via a variety of technologies, including but
+        not limited to screen readers, speech recognition software, operating system screen
+        magnifiers, and operating system speech packages.
+      </p>
+      <p>
+        Wherever possible, I adhere to level AA/AAA of the <OutsideLink
+          showIcon
+          href="https://www.w3.org/WAI/standards-guidelines/wcag/"
+        >
+          Web Content Accessibility Guidelines (WCAG 2.1)
+        </OutsideLink> to ensure the following:
+        <ul class="ml-5 list-disc space-y-1 md:pl-3">
+          <li>Information is presentable to users in ways they can understand</li>
+          <li>The user interface components and navigation are operable</li>
+          <li>
+            Content can be interpreted by a wide variety of user agents, including assistive
+            technologies
+          </li>
+        </ul>
+      </p>
+      <p>
+        If you need assistance with any process or have questions or concerns about the
+        accessibility on this site, please contact me at <a
+          title="opens in a new window"
+          class="focus:color-white inline-block cursor-pointer rounded border-2 border-solid border-transparent text-light-blue underline transition-[box-shadow] duration-300 ease-in-out hover:text-white focus:border-primary-100 focus:shadow-ring"
+          href="mailto:matt@mattcarlotta.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          matt@mattcarlotta.com
+        </a>
+      </p>
+    </section>
+  </div>
+</MainLayout>

@@ -244,8 +244,14 @@ const documentType = type || 'website'
       <div class="min-h-body p-2.5 md:p-0">
         <slot />
       </div>
-      <footer class="mt-20 pb-2 text-center font-stylized text-tiny text-accent">
-        &#169;{new Date().getFullYear()} Matt Carlotta
+      <footer
+        class="mt-20 flex flex-col items-center justify-center whitespace-nowrap pb-2 text-md font-extrabold text-accent sm:flex-row sm:space-x-4"
+      >
+        <p>&#169;{new Date().getFullYear()} Matt Carlotta</p>
+        <span class="hidden sm:inline-block">|</span>
+        <Link className="md:!inline-block !p-0 w-auto" href="/accessibility/">Accessibility</Link>
+        <span class="hidden sm:inline-block">|</span>
+        <Link className="md:!inline-block !p-0 w-auto" href="/sitemap/">Site Map</Link>
       </footer>
     </main>
   </body>

@@ -5,7 +5,9 @@ const sitemapURLs = [
   "/",
   "/project/", 
   "/explorations/", 
-  "/background/"
+  "/background/",
+  "/accessibility/",
+  "/sitemap/"
 ].map((slug) => generateSitemapUrl(slug)).join('\r\n')
 
 return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
