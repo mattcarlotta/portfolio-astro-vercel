@@ -123,7 +123,7 @@ const siteMapsUrls = ['/', 'projects', 'explorations']
             <li class={clsx(idx === 0 && 'mt-6', idx % 2 ? 'bg-primary-900' : 'bg-transparent')}>
               <Link
                 className="!inline-block w-auto py-2.5 md:!py-1"
-                href={`${href === '/' ? href : `/${href}/`}sitemap.xml/`}
+                href={`${href === '/' ? href : `/${href}/`}sitemap.xml`}
               >
                 {href === '/' ? 'home' : href}
               </Link>
