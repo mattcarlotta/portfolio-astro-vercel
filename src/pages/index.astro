@@ -111,6 +111,7 @@ const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.it
     .circleFive {
       transform: rotateZ(360deg) rotateX(63.435deg);
     }
+
     @media (hover: hover) {
       .card {
         position: relative;
@@ -192,12 +193,13 @@ const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.it
         display: block;
       }
     }
+
     @media (hover: none) {
       .card {
         margin-left: 0.25rem;
         margin-right: 0.25rem;
         margin-bottom: 2rem;
-        height: auto;
+        height: 28rem;
         width: 100%;
         border-bottom-right-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
@@ -207,13 +209,64 @@ const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.it
         background-color: #00020e;
         text-align: center;
         color: rgb(0 150 255 / 1);
+        transform: none;
       }
+
       @media (min-width: 640px) {
         .card {
           margin-bottom: 3.5rem;
-          height: 30rem;
           width: 18.75rem;
         }
+      }
+      @media (max-width: 640px) {
+        .card {
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion) {
+      .card {
+        height: 28rem;
+        transform: none;
+        background-color: #00020e;
+        box-shadow: unset;
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          height: auto;
+          width: 100%;
+        }
+      }
+      .card > [data-title='card-container'] {
+        height: 100%;
+      }
+
+      .card:hover,
+      .card:focus,
+      .card:focus-within {
+        transform: none;
+        transition-property: none;
+        transition-duration: none;
+        transition-timing-function: none;
+      }
+
+      .card:hover > [data-title='card-container'],
+      .card:focus > [data-title='card-container'],
+      .card:focus-within > [data-title='card-container'] {
+        position: unset;
+      }
+
+      .card:hover > [data-title='placeholder'],
+      .card:focus > [data-title='placeholder'],
+      .card:focus-within > [data-title='placeholder'] {
+        display: none;
+      }
+
+      .circleContainer {
+        animation: none;
       }
     }
   </style>

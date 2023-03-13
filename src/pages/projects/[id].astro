@@ -30,13 +30,6 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
   type="article"
 >
   <style slot="head" is:inline>
-    @media (hover: hover) {
-      .panel-body [data-title='bar'] {
-        display: block;
-        opacity: 1;
-      }
-    }
-
     .panel-body {
       --tw-shadow: inset -1px -1px 24px -9px rgb(101 130 255 / 50%), 0px 0px 26px -2px rgb(0 64 255);
       --tw-shadow-colored: inset -1px -1px 24px -9px var(--tw-shadow-color),
@@ -53,6 +46,14 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
       border-image: linear-gradient(to top, #73b9ff 0%, #005193 50%, #005193 100%);
       border-image-slice: 1;
     }
+
+    @media (hover: hover) {
+      .panel-body [data-title='bar'] {
+        display: block;
+        opacity: 1;
+      }
+    }
+
     .markdown ul {
       margin: 0.75rem 0;
       list-style-type: disc;
@@ -93,10 +94,22 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
       transition-duration: 0.2s;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .gallery:hover h2,
     .gallery:focus h2,
     .gallery:focus-within h2 {
       background-color: rgb(0 136 255/1);
+    }
+
+    @media (prefers-reduced-motion) {
+      .gallery:hover,
+      .gallery:focus,
+      .gallery:focus-within {
+        transform: none;
+        transition-property: none;
+        transition-duration: none;
+        transition-timing-function: none;
+      }
     }
   </style>
   {

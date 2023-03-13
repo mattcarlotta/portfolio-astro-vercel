@@ -35,13 +35,6 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
   description="Learn about my journey on how I became a fullstack software engineer"
 >
   <style slot="head" is:inline>
-    @media (hover: hover) {
-      .panel-body [data-title='bar'] {
-        display: block;
-        opacity: 1;
-      }
-    }
-
     .panel-body {
       --tw-shadow: inset -1px -1px 24px -9px rgb(101 130 255 / 50%), 0px 0px 26px -2px rgb(0 64 255);
       --tw-shadow-colored: inset -1px -1px 24px -9px var(--tw-shadow-color),
@@ -71,6 +64,13 @@ const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
     .markdown p {
       margin: 0.375rem 0;
       padding: 0.375rem 0;
+    }
+
+    @media (hover: hover) {
+      .panel-body [data-title='bar'] {
+        display: block;
+        opacity: 1;
+      }
     }
   </style>
   {
