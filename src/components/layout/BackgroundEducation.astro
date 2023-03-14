@@ -11,10 +11,12 @@ interface Props {
 const { education } = Astro.props
 ---
 
-<ul class="space-y-2 pl-1 leading-relaxed md:pl-4">
+<ul class="space-y-2 pl-1 leading-relaxed md:space-y-1 md:pl-4">
   {
     education.data.map(({ title, url }, index) => (
-      <li class={clsx(index === 0 && 'mt-2', index % 2 ? 'bg-primary-900' : 'bg-transparent')}>
+      <li
+        class={clsx('p-2', index === 0 && 'mt-2', index % 2 ? 'bg-primary-900' : 'bg-transparent')}
+      >
         <ProjectsIcon className="mr-1 align-middle" />
         <OutsideLink className="md:text-lg" href={url} showIcon>
           {title}
