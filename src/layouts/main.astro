@@ -194,7 +194,6 @@ const documentType = type || 'website'
         }
       }
     </style>
-    <slot name="head" />
   </head>
   <body>
     <header class="overflow-hidden">
@@ -271,5 +270,6 @@ const documentType = type || 'website'
         <Link className="md:!inline-block w-auto p-2.5" href="/sitemap/">Site Map</Link>
       </footer>
     </main>
+    <slot name="body" />
   </body>
 </html>

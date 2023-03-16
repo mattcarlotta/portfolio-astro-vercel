@@ -29,7 +29,7 @@ const project: CONTENTFUL_PROJECTS_PAGE = res?.data?.projectsCollection?.items?.
   title={project?.title || 'File Not Found'}
   type="article"
 >
-  <style slot="head" is:inline>
+  <style slot="body" is:inline>
     .panel-body {
       --tw-shadow: inset -1px -1px 24px -9px rgb(101 130 255 / 50%), 0px 0px 26px -2px rgb(0 64 255);
       --tw-shadow-colored: inset -1px -1px 24px -9px var(--tw-shadow-color),

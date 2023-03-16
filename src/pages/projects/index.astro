@@ -22,7 +22,7 @@ const projectCount = res?.data?.projectsCollection?.total
   title={!projectCount || currentPage <= 0 ? 'Projects' : `Projects Page ${currentPage + 1}`}
   type="article"
 >
-  <style slot="head" is:inline>
+  <style slot="body" is:inline>
     .pagination {
       width: 100%;
       display: flex;
