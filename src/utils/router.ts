@@ -94,7 +94,9 @@ export const appRouter = trpc.router({
     .query(async ({ input }) => {
       try {
         const res = await getExplorationBySlug(input?.id, input?.preview)
-        return NULLABLE_CONTENTFUL_EXPLORATION_PAGE.parse(res?.data?.projectsCollection?.items[0])
+        return NULLABLE_CONTENTFUL_EXPLORATION_PAGE.parse(
+          res?.data?.explorationsCollection?.items[0]
+        )
       } catch (error) {
         logError(error)
         return null
