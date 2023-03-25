@@ -114,13 +114,13 @@ export type CONTENTFUL_EXPLORATIONS_PAGE = {
   CONTENTFUL_TITLE &
   CONTENTFUL_SLUG
 
-export type CONTENTFUL_PAGE_CARD = {
+/* export type CONTENTFUL_PAGE_CARD = {
   description: string
   imagePriority: boolean
   preview: CONTENTFUL_IMAGE
 } & CONTENTFUL_ID &
   CONTENTFUL_TITLE &
-  CONTENTFUL_SLUG
+  CONTENTFUL_SLUG */
 
 export type CONTENTFUL_PROJECTS_PAGE = {
   imagePriority: boolean

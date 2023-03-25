@@ -34,16 +34,19 @@ async function fetchGraphQL(query: string, preview = false) {
         json?.errors?.[0]?.message || json?.message
       )}`
     )
+    // TODO - Change this to a reject and catch it in Zod router
     return Promise.resolve(null)
   }
 
   return json
 }
 
-export function getHomepageCards() {
+export function getHomepageCards(preview?: boolean) {
   return fetchGraphQL(
     `query {
-      homepageCardCollection(order: sys_firstPublishedAt_DESC) {
+      homepageCardCollection(order: sys_firstPublishedAt_DESC, preview: ${
+        preview ? 'true' : 'false'
+      }) {
         items {
           ${HOMEPAGE_CARDS}
         }
