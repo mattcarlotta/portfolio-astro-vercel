@@ -52,7 +52,8 @@ export function getHomepageCards(preview?: boolean) {
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 
@@ -86,17 +87,20 @@ export function getExplorationBySlug(slug?: string, preview?: boolean) {
   )
 }
 
-export function getAllExplorations(page = 1) {
+export function getAllExplorations(page = 1, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      explorationsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${page * 9}) {
+      explorationsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${
+        page * 9
+      }, preview: ${preview ? 'true' : 'false'}) {
         total
         items {
           ${EXPLORATIONS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 
@@ -116,17 +120,20 @@ export function getProjectBySlug(slug?: string, preview?: boolean) {
   )
 }
 
-export function getAllProjects(page = 1) {
+export function getAllProjects(page = 1, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      projectsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${page * 9}) {
+      projectsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${page * 9}, preview: ${
+      preview ? 'true' : 'false'
+    }) {
         total
         items {
           ${PROJECTS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 

@@ -1,9 +1,9 @@
 import { For, Show } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import ImagesIcon from '../../icons/ImagesIcon'
-import type { CONTENTFUL_IMAGE } from '../../types'
 import calculateScale from '../../utils/calculateScale'
 import clsx from '../../utils/clsx'
+import type { CONTENTFUL_IMAGE } from '../../utils/types'
 import FocusTrapper from './FocusTrapper'
 
 export type ModalDialogState = {

@@ -13,6 +13,7 @@ export const HeightAndWidth = z.object({
   height: z.number(),
   width: z.number(),
 })
+export type HeightAndWidth = z.TypeOf<typeof HeightAndWidth>
 
 export const Title = z.object({
   title: z.string(),
@@ -25,6 +26,7 @@ export const CONTENTFUL_IMAGE = HeightAndWidth.merge(Title).merge(
     url: z.string(),
   })
 )
+export type CONTENTFUL_IMAGE = z.TypeOf<typeof CONTENTFUL_IMAGE>
 
 export const CONTENTFUL_TITLE = Title
 
@@ -86,3 +88,48 @@ export const CONTENTFUL_BACKGROUND_PAGE = z
 
 export type BackgroundPage = z.TypeOf<typeof CONTENTFUL_BACKGROUND_PAGE>
 export type NonNullBackgroundPage = NonNullable<BackgroundPage>
+
+export const CONTENTFUL_PROJECT_PAGE = z
+  .object({
+    imagePriority: z.boolean(),
+    seoDescription: z.string(),
+    active: z.boolean(),
+    status: z.string(),
+    location: z.string().nullable(),
+    source: z.string(),
+    preview: CONTENTFUL_IMAGE,
+    tech: z.array(z.string()),
+    snapshotsCollection: z.object({
+      items: z.array(CONTENTFUL_IMAGE),
+    }),
+  })
+  .merge(CONTENTFUL_ID)
+  .merge(CONTENTFUL_TITLE)
+  .merge(CONTENTFUL_DESCRIPTION)
+  .merge(CONTENTFUL_SLUG)
+
+export type ProjectPage = z.TypeOf<typeof CONTENTFUL_PROJECT_PAGE>
+
+export const NULLABLE_CONTENTFUL_PROJECT_PAGE = CONTENTFUL_PROJECT_PAGE.nullable()
+export type NullProjectPage = z.TypeOf<typeof NULLABLE_CONTENTFUL_PROJECT_PAGE>
+
+export const CONTENTFUL_PROJECT_PAGES = z.array(CONTENTFUL_PROJECT_PAGE).nullable()
+export type ProjectPages = z.TypeOf<typeof CONTENTFUL_PROJECT_PAGES>
+
+export const CONTENTFUL_EXPLORATION_PAGE = z
+  .object({
+    imagePriority: z.boolean().nullable(),
+    sandboxId: z.string(),
+    preview: CONTENTFUL_IMAGE,
+  })
+  .merge(CONTENTFUL_ID)
+  .merge(CONTENTFUL_TITLE)
+  .merge(CONTENTFUL_SLUG)
+
+export type ExplorationPage = z.TypeOf<typeof CONTENTFUL_EXPLORATION_PAGE>
+
+export const NULLABLE_CONTENTFUL_EXPLORATION_PAGE = CONTENTFUL_EXPLORATION_PAGE.nullable()
+export type NullExplorationPage = z.TypeOf<typeof NULLABLE_CONTENTFUL_EXPLORATION_PAGE>
+
+export const CONTENTFUL_EXPLORATION_PAGES = z.array(CONTENTFUL_EXPLORATION_PAGE).nullable()
+export type ExplorationPages = z.TypeOf<typeof CONTENTFUL_EXPLORATION_PAGES>
