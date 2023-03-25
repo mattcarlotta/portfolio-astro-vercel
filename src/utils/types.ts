@@ -1,4 +1,7 @@
-import { z } from 'zod'
+import * as z from 'zod'
+import type { Document } from '../types'
+
+export const CONTENTFUL_DOCUMENT: z.ZodType<Document> = z.any()
 
 export const CONTENTFUL_ID = z.object({
   sys: z.object({
@@ -30,7 +33,7 @@ export const CONTENTFUL_SLUG = z.object({
 })
 
 export const CONTENTFUL_JSON = z.object({
-  json: z.any(),
+  json: CONTENTFUL_DOCUMENT,
 })
 
 export const CONTENTFUL_DESCRIPTION = z.object({
@@ -82,3 +85,4 @@ export const CONTENTFUL_BACKGROUND_PAGE = z
   .nullable()
 
 export type BackgroundPage = z.TypeOf<typeof CONTENTFUL_BACKGROUND_PAGE>
+export type NonNullBackgroundPage = NonNullable<BackgroundPage>

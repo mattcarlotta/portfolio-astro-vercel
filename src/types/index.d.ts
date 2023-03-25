@@ -91,21 +91,6 @@ export type CONTENTFUL_DESCRIPTION = {
   description: CONTENTFUL_JSON
 }
 
-export type CONTENTFUL_BACKGROUND_PAGE = {
-  profileImage: CONTENTFUL_IMAGE
-  location: string
-  rank: string
-  email: string
-  tech: {
-    data: Array<{ level: number; technology: string }>
-  }
-  education: {
-    data: Array<{ url: string; title: string }>
-  }
-} & CONTENTFUL_ID &
-  CONTENTFUL_TITLE &
-  CONTENTFUL_DESCRIPTION
-
 export type CONTENTFUL_EXPLORATIONS_PAGE = {
   imagePriority: boolean
   sandboxId: string
@@ -113,14 +98,6 @@ export type CONTENTFUL_EXPLORATIONS_PAGE = {
 } & CONTENTFUL_ID &
   CONTENTFUL_TITLE &
   CONTENTFUL_SLUG
-
-/* export type CONTENTFUL_PAGE_CARD = {
-  description: string
-  imagePriority: boolean
-  preview: CONTENTFUL_IMAGE
-} & CONTENTFUL_ID &
-  CONTENTFUL_TITLE &
-  CONTENTFUL_SLUG */
 
 export type CONTENTFUL_PROJECTS_PAGE = {
   imagePriority: boolean

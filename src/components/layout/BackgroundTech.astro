@@ -1,9 +1,9 @@
 ---
-import type { CONTENTFUL_BACKGROUND_PAGE } from '../../types'
+import type { NonNullBackgroundPage } from '../../utils/types'
 import clsx from '../../utils/clsx'
 
 interface Props {
-  tech: CONTENTFUL_BACKGROUND_PAGE['tech']
+  tech: NonNullBackgroundPage['tech']
 }
 
 const { tech } = Astro.props
