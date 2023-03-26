@@ -4,7 +4,7 @@ import CodeIcon from '../../icons/CodeIcon.astro'
 import DemoIcon from '../../icons/DemoIcon.astro'
 import StatusIcon from '../../icons/StatusIcon.astro'
 import type { AriaLabel, Title } from '../../types'
-import type { HeightAndWidth } from '../../utils/types' 
+import type { THeightAndWidth } from '../../utils/types' 
 import clsx from '../../utils/clsx'
 import Link from '../navigation/Link.astro'
 import Bars from './Bars.astro'
@@ -13,7 +13,7 @@ import Image from './Image.astro'
 import Tooltip from './Tooltip.astro'
 
 type Props = AriaLabel &
-  HeightAndWidth &
+  THeightAndWidth &
   Title & {
     active?: boolean
     alt?: string

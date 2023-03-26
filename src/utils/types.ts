@@ -13,7 +13,7 @@ export const HeightAndWidth = z.object({
   height: z.number(),
   width: z.number(),
 })
-export type HeightAndWidth = z.TypeOf<typeof HeightAndWidth>
+export type THeightAndWidth = z.TypeOf<typeof HeightAndWidth>
 
 export const Title = z.object({
   title: z.string(),
@@ -26,7 +26,7 @@ export const CONTENTFUL_IMAGE = HeightAndWidth.merge(Title).merge(
     url: z.string(),
   })
 )
-export type CONTENTFUL_IMAGE = z.TypeOf<typeof CONTENTFUL_IMAGE>
+export type TCONTENTFUL_IMAGE = z.TypeOf<typeof CONTENTFUL_IMAGE>
 
 export const CONTENTFUL_TITLE = Title
 

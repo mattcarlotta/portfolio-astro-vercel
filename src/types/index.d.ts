@@ -7,22 +7,22 @@ import type {
   Node as ContentfulNode,
   Text,
 } from '@contentful/rich-text-types'
+import type { JSXElement, Ref } from 'solid-js'
 
-export type { JSX, JSXElement, Ref } from 'solid-js'
-export type JSXElement = JSX.Element
+export { JSXElement, Ref }
 
 /// contentful types
 export { Block, ContentfulNode, Document, Inline, Mark, Text }
 export type BlockOrInline = Block | Inline
 export type CommonNode = Text | BlockOrInline
 export interface RenderNode {
-  [k: string]: { (node: BlockOrInline, children: JSXElement): JSXElement }
+  [k: string]: { (): JSXElement }
 }
 export interface RenderMark {
-  [k: string]: (text: JSXElement) => JSXElement
+  [k: string]: () => JSXElement
 }
 export interface RenderText {
-  (text: string): JSXElement
+  (): JSXElement
 }
 export interface Options {
   renderNode?: RenderNode

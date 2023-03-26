@@ -3,7 +3,7 @@ import { createStore } from 'solid-js/store'
 import ImagesIcon from '../../icons/ImagesIcon'
 import calculateScale from '../../utils/calculateScale'
 import clsx from '../../utils/clsx'
-import type { CONTENTFUL_IMAGE } from '../../utils/types'
+import type { TCONTENTFUL_IMAGE } from '../../utils/types'
 import FocusTrapper from './FocusTrapper'
 
 export type ModalDialogState = {
@@ -11,7 +11,7 @@ export type ModalDialogState = {
   open: boolean
 }
 
-export default function GalleryView(props: { snapshots: Array<CONTENTFUL_IMAGE> }) {
+export default function GalleryView(props: { snapshots: Array<TCONTENTFUL_IMAGE> }) {
   // eslint-disable-next-line solid/reactivity
   const snapsLength = props.snapshots.length
   const [state, setState] = createStore<ModalDialogState>({

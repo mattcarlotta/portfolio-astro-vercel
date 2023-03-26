@@ -1,5 +1,5 @@
 /// <reference types="astro/client" />
-
+/* eslint-disable */
 interface ImportMetaEnv {
   readonly CONTENTFUL_BASE_URL: string
   readonly CONTENTFUL_SPACE_ID: string
