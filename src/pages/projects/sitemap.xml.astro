@@ -2,29 +2,9 @@
 import { HEADER, FOOTER, generateSitemapUrl } from "../../utils/generateSitemap";
 import { caller } from "../api/trpc/[trpc]";
 
-try {
-  const data = await caller.projectSitemap()
-  if (!data) throw Error()
-        
-  const projectSlugs = data.map(({ slug }) => `/projects/${slug}/`) || []
+const data = await caller.projectSitemap()
 
-  const projectPages = Array.from({ length: Math.floor(projectSlugs.length / 9) }).map(
-    (_, i) => `/projects/?page=${i + 2}`
-  )
-
-  const sitemapURLs = [
-    "/projects/", 
-    ...projectPages, 
-    ...projectSlugs
-  ].map((slug) => generateSitemapUrl(slug)).join('\r\n')
-
-  return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
-    status: 200,
-    headers: {
-      "Content-Type": "text/xml"
-    }
-  });
-} catch(e) {
+if (!data || !data.length) {
   const error = 'Unable to generate site maps as one more of the slug results are empty'
   console.error(error)
   return new Response(error, {
@@ -35,5 +15,24 @@ try {
     }
   });
 }
+        
+const projectSlugs = data.map(({ slug }) => `/projects/${slug}/`) || []
+
+const projectPages = Array.from({ length: Math.floor(projectSlugs.length / 9) }).map(
+  (_, i) => `/projects/?page=${i + 2}`
+)
+
+const sitemapURLs = [
+  "/projects/", 
+  ...projectPages, 
+  ...projectSlugs
+].map((slug) => generateSitemapUrl(slug)).join('\r\n')
+
+return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
+  status: 200,
+  headers: {
+    "Content-Type": "text/xml"
+  }
+});
 
 ---
