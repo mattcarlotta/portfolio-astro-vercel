@@ -5,8 +5,10 @@ import {
   getAllProjects,
   getBackground,
   getExplorationBySlug,
+  getExplorationSlugs,
   getHomepageCards,
   getProjectBySlug,
+  getProjectSlugs,
 } from './contentfulApi'
 import {
   CONTENTFUL_BACKGROUND_PAGE,
@@ -15,6 +17,7 @@ import {
   CONTENTFUL_PROJECT_PAGES,
   NULLABLE_CONTENTFUL_EXPLORATION_PAGE,
   NULLABLE_CONTENTFUL_PROJECT_PAGE,
+  SITEMAP_SLUGS,
 } from './types'
 
 export const trpc = initTRPC.create()
@@ -102,6 +105,15 @@ export const appRouter = trpc.router({
         return null
       }
     }),
+  explorationSitemap: trpc.procedure.output(SITEMAP_SLUGS).query(async () => {
+    try {
+      const res = await getExplorationSlugs()
+      return SITEMAP_SLUGS.parse(res?.data?.explorationsCollection?.items)
+    } catch (error) {
+      logError(error)
+      return []
+    }
+  }),
   projects: trpc.procedure
     .input(
       z.object({
@@ -139,6 +151,15 @@ export const appRouter = trpc.router({
         return null
       }
     }),
+  projectSitemap: trpc.procedure.output(SITEMAP_SLUGS).query(async () => {
+    try {
+      const res = await getProjectSlugs()
+      return SITEMAP_SLUGS.parse(res?.data?.projectsCollection?.items)
+    } catch (error) {
+      logError(error)
+      return []
+    }
+  }),
 })
 
 export default appRouter

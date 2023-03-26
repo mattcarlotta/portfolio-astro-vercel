@@ -1,41 +1,37 @@
 ---
-import type { SitemapSlugs } from "../../types";
-import { fetchExplorationSlugs } from "../../utils/contentfulApi";
 import { HEADER, FOOTER, generateSitemapUrl } from "../../utils/generateSitemap";
+import { caller } from "../api/trpc/[trpc]";
 
-const res = await fetchExplorationSlugs()
+try {
+  const data = await caller.explorationSitemap()
+  if (!data) throw Error()
+        
+  const explorationSlugs = data.map(({ slug }) => `/explorations/${slug}/`) || []
 
-const data: SitemapSlugs = res?.data?.explorationsCollection?.items
+  const explorationPages = Array.from({ length: Math.floor(explorationSlugs.length / 9) }).map((_, i) => `/exporations/?page=${i + 2}`)
 
-const explorationSlugs = data?.map(({ slug }) => `/explorations/${slug}/`) || []
+  const sitemapURLs = [
+    "/explorations/", 
+    ...explorationPages, 
+    ...explorationSlugs
+  ].map((slug) => generateSitemapUrl(slug)).join('\r\n')
 
-const explorationPages = Array.from({ length: Math.floor(explorationSlugs.length / 9) }).map((_, i) => `/exporations/?page=${i + 2}`)
-
-if (!explorationSlugs.length) {
-  const error = 'Unable to generate site maps as one more of the slug results are empty'
-
-  console.error(error)
-
-  return new Response(error, {
-    status: 200,
-    headers: {
-      "Content-Type": "text/plain;charset=UTF-8",
-      "Cache-Control": "no-cache"
-     }
-  });
-}
-
-const sitemapURLs = [
-  "/explorations/", 
-  ...explorationPages, 
-  ...explorationSlugs
-].map((slug) => generateSitemapUrl(slug)).join('\r\n')
-
-
-return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
+  return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
     status: 200,
     headers: {
       "Content-Type": "text/xml"
     }
   });
+} catch(e) {
+  const error = 'Unable to generate site maps as one more of the slug results are empty'
+  console.error(error)
+  return new Response(error, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain;charset=UTF-8",
+      "Cache-Control": "no-cache"
+    }
+  });
+}
+
 ---

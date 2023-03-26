@@ -1,43 +1,39 @@
 ---
-import type { SitemapSlugs } from "../../types";
-import { fetchProjectSlugs } from "../../utils/contentfulApi";
 import { HEADER, FOOTER, generateSitemapUrl } from "../../utils/generateSitemap";
+import { caller } from "../api/trpc/[trpc]";
 
-const res = await fetchProjectSlugs()
+try {
+  const data = await caller.projectSitemap()
+  if (!data) throw Error()
+        
+  const projectSlugs = data.map(({ slug }) => `/projects/${slug}/`) || []
 
-const data: SitemapSlugs = res?.data?.projectsCollection?.items
+  const projectPages = Array.from({ length: Math.floor(projectSlugs.length / 9) }).map(
+    (_, i) => `/projects/?page=${i + 2}`
+  )
 
-const projectSlugs = data?.map(({ slug }) => `/projects/${slug}/`) || []
+  const sitemapURLs = [
+    "/projects/", 
+    ...projectPages, 
+    ...projectSlugs
+  ].map((slug) => generateSitemapUrl(slug)).join('\r\n')
 
-const projectPages = Array.from({ length: Math.floor(projectSlugs.length / 9) }).map(
-  (_, i) => `/projects/?page=${i + 2}`
-)
-
-if (!projectSlugs.length) {
-  const error = 'Unable to generate site maps as one more of the slug results are empty'
-
-  console.error(error)
-
-  return new Response(error, {
-    status: 200,
-    headers: {
-      "Content-Type": "text/plain;charset=UTF-8",
-      "Cache-Control": "no-cache"
-     }
-  });
-}
-
-const sitemapURLs = [
-  "/projects/", 
-  ...projectPages, 
-  ...projectSlugs
-].map((slug) => generateSitemapUrl(slug)).join('\r\n')
-
-
-return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
+  return new Response(HEADER.concat(sitemapURLs).concat(FOOTER), {
     status: 200,
     headers: {
       "Content-Type": "text/xml"
     }
   });
+} catch(e) {
+  const error = 'Unable to generate site maps as one more of the slug results are empty'
+  console.error(error)
+  return new Response(error, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain;charset=UTF-8",
+      "Cache-Control": "no-cache"
+    }
+  });
+}
+
 ---

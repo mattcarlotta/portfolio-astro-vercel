@@ -133,3 +133,10 @@ export type NullExplorationPage = z.TypeOf<typeof NULLABLE_CONTENTFUL_EXPLORATIO
 
 export const CONTENTFUL_EXPLORATION_PAGES = z.array(CONTENTFUL_EXPLORATION_PAGE).nullable()
 export type ExplorationPages = z.TypeOf<typeof CONTENTFUL_EXPLORATION_PAGES>
+
+export const SITEMAP_SLUGS = z.array(
+  z.object({
+    slug: z.string(),
+    title: z.string(),
+  })
+)
