@@ -7,17 +7,14 @@ import PanelTitle from '../../components/layout/PanelTitle.astro'
 import Project from '../../components/layout/Project.astro'
 import GoBack from '../../components/navigation/GoBack.astro'
 import MainLayout from '../../layouts/main.astro'
-import type { CONTENTFUL_EXPLORATIONS_PAGE } from '../../types'
-import { getExplorationBySlug } from '../../utils/contentfulApi'
 import { showPreview } from '../../utils/showPreview'
+import { caller } from '../api/trpc/[trpc]'
 
 const { id } = Astro.params
 
 const preview = Astro.url.searchParams.get('preview')
 
-const res = await getExplorationBySlug(id, showPreview(preview))
-
-const exploration: CONTENTFUL_EXPLORATIONS_PAGE = res?.data?.explorationsCollection?.items?.[0]
+const exploration = await caller.explorationPage({ id, preview: showPreview(preview)})
 ---
 
 <MainLayout

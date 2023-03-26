@@ -34,22 +34,26 @@ async function fetchGraphQL(query: string, preview = false) {
         json?.errors?.[0]?.message || json?.message
       )}`
     )
+    // TODO - Change this to a reject and catch it in Zod router
     return Promise.resolve(null)
   }
 
   return json
 }
 
-export function getHomepageCards() {
+export function getHomepageCards(preview?: boolean) {
   return fetchGraphQL(
     `query {
-      homepageCardCollection(order: sys_firstPublishedAt_DESC) {
+      homepageCardCollection(order: sys_firstPublishedAt_DESC, preview: ${
+        preview ? 'true' : 'false'
+      }) {
         items {
           ${HOMEPAGE_CARDS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 
@@ -83,17 +87,20 @@ export function getExplorationBySlug(slug?: string, preview?: boolean) {
   )
 }
 
-export function getAllExplorations(page = 1) {
+export function getAllExplorations(page = 1, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      explorationsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${page * 9}) {
+      explorationsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${
+        page * 9
+      }, preview: ${preview ? 'true' : 'false'}) {
         total
         items {
           ${EXPLORATIONS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 
@@ -113,21 +120,24 @@ export function getProjectBySlug(slug?: string, preview?: boolean) {
   )
 }
 
-export function getAllProjects(page = 1) {
+export function getAllProjects(page = 1, preview?: boolean) {
   return fetchGraphQL(
     `query {
-      projectsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${page * 9}) {
+      projectsCollection(order: sys_firstPublishedAt_DESC, limit: 9, skip: ${page * 9}, preview: ${
+      preview ? 'true' : 'false'
+    }) {
         total
         items {
           ${PROJECTS}
         }
       }
     }
-    `
+    `,
+    preview
   )
 }
 
-export async function fetchProjectSlugs() {
+export async function getProjectSlugs() {
   return fetchGraphQL(
     `query {
       projectsCollection(order: sys_firstPublishedAt_DESC) {
@@ -141,7 +151,7 @@ export async function fetchProjectSlugs() {
   )
 }
 
-export async function fetchExplorationSlugs() {
+export async function getExplorationSlugs() {
   return fetchGraphQL(
     `query {
       explorationsCollection(order: sys_firstPublishedAt_DESC) {

@@ -5,15 +5,11 @@ import ExplorationsIcon from '../icons/ExplorationsIcon.astro'
 import ProjectsIcon from '../icons/ProjectsIcon.astro'
 import SitemapIcon from '../icons/SitemapIcon.astro'
 import MainLayout from '../layouts/main.astro'
-import type { SitemapSlugs } from '../types'
 import clsx from '../utils/clsx'
-import { fetchProjectSlugs, fetchExplorationSlugs } from '../utils/contentfulApi'
+import { caller } from './api/trpc/[trpc]'
 
-const projectSlugsRes = await fetchProjectSlugs()
-const explorationSlugRes = await fetchExplorationSlugs()
-
-const projectSlugs: SitemapSlugs = projectSlugsRes?.data?.projectsCollection?.items || []
-const explorationSlus: SitemapSlugs = explorationSlugRes?.data?.explorationsCollection?.items || []
+const projectSlugs = await caller.projectSitemap()
+const explorationSlus = await caller.explorationSitemap()
 const siteMapsUrls = ['/', 'projects', 'explorations']
 ---
 

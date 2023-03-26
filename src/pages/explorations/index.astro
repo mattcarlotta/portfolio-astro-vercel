@@ -5,16 +5,14 @@ import Section from '../../components/layout/Section.astro'
 import Pagination from '../../components/navigation/Pagination.astro'
 import ExplorationsIcon from '../../icons/ExplorationsIcon.astro'
 import MainLayout from '../../layouts/main.astro'
-import type { CONTENTFUL_EXPLORATIONS_PAGE } from '../../types'
-import { getAllExplorations } from '../../utils/contentfulApi'
+import { showPreview } from '../../utils/showPreview'
+import { caller } from '../api/trpc/[trpc]'
 
 const pageQuery = Astro.url.searchParams.get('page')
 const currentPage = Math.max(parseInt(pageQuery || '1', 10) - 1, 0)
+const preview = Astro.url.searchParams.get('preview')
 
-const res = await getAllExplorations(currentPage)
-
-const explorations: Array<CONTENTFUL_EXPLORATIONS_PAGE> = res?.data?.explorationsCollection?.items
-const explorationCount = res?.data?.explorationsCollection?.total
+const { explorations, explorationCount } = await caller.explorations({ page: currentPage, preview: showPreview(preview) })
 ---
 
 <MainLayout

@@ -5,16 +5,14 @@ import Section from '../../components/layout/Section.astro'
 import Pagination from '../../components/navigation/Pagination.astro'
 import ProjectsIcon from '../../icons/ProjectsIcon.astro'
 import MainLayout from '../../layouts/main.astro'
-import type { CONTENTFUL_PROJECTS_PAGE } from '../../types'
-import { getAllProjects } from '../../utils/contentfulApi'
+import { showPreview } from '../../utils/showPreview'
+import { caller } from '../api/trpc/[trpc]'
 
 const pageQuery = Astro.url.searchParams.get('page')
 const currentPage = Math.max(parseInt(pageQuery || '1', 10) - 1, 0)
+const preview = Astro.url.searchParams.get('preview')
 
-const res = await getAllProjects(currentPage)
-
-const projects: Array<CONTENTFUL_PROJECTS_PAGE> = res?.data?.projectsCollection?.items
-const projectCount = res?.data?.projectsCollection?.total
+const { projects, projectCount } = await caller.projects({ page: currentPage, preview: showPreview(preview) })
 ---
 
 <MainLayout

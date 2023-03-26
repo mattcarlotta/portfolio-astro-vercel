@@ -1,8 +1,9 @@
 ---
-import type { HeightAndWidth, OptionalClassName } from '../../types'
+import type { OptionalClassName } from '../../types'
+import type { THeightAndWidth } from '../../utils/types'
 import calculateScale from '../../utils/calculateScale'
 
-type Props = HeightAndWidth &
+type Props = THeightAndWidth &
   OptionalClassName & {
     alt?: string
     contentType: string

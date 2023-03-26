@@ -4,12 +4,9 @@ import NotFound from '../components/layout/NotFound.astro'
 import Orbits from '../components/layout/Orbits.astro'
 import Section from '../components/layout/Section.astro'
 import MainLayout from '../layouts/main.astro'
-import type { CONTENTFUL_PAGE_CARD } from '../types'
-import { getHomepageCards } from '../utils/contentfulApi'
+import { caller } from './api/trpc/[trpc]'
 
-const res = await getHomepageCards()
-
-const cards: Array<CONTENTFUL_PAGE_CARD> = res?.data?.homepageCardCollection?.items
+const cards = await caller.homeCards();
 ---
 
 <MainLayout

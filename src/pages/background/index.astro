@@ -20,14 +20,11 @@ import RankIcon from '../../icons/RankIcon.astro'
 import StackOverflowIcon from '../../icons/StackOverflowIcon.astro'
 import StatusIcon from '../../icons/StatusIcon.astro'
 import MainLayout from '../../layouts/main.astro'
-import type { CONTENTFUL_BACKGROUND_PAGE } from '../../types'
-import { getBackground } from '../../utils/contentfulApi'
 import { showPreview } from '../../utils/showPreview'
+import { caller } from '../api/trpc/[trpc]'
 
 const preview = Astro.url.searchParams.get('preview')
-
-const res = await getBackground(showPreview(preview))
-const background: CONTENTFUL_BACKGROUND_PAGE = res?.data?.background
+const background = await caller.backgroundInfo({ preview: showPreview(preview) });
 ---
 
 <MainLayout

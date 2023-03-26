@@ -1,11 +1,11 @@
 ---
 import ProjectsIcon from '../../icons/ProjectsIcon.astro'
-import type { CONTENTFUL_BACKGROUND_PAGE } from '../../types'
+import type { NonNullBackgroundPage } from '../../utils/types'
 import clsx from '../../utils/clsx'
 import OutsideLink from '../navigation/OutsideLink.astro'
 
 interface Props {
-  education: CONTENTFUL_BACKGROUND_PAGE['education']
+  education: NonNullBackgroundPage['education']
 }
 
 const { education } = Astro.props
